@@ -1,0 +1,1653 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="通过wix4制作golang程序的windows安装包, 双的鱼 双的鱼博客 hexo博客 个人博客">
+    <meta name="description" content="双的鱼博客，记录我的学习和感想">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>通过wix4制作golang程序的windows安装包 | 双的鱼博客</title>
+    <link rel="icon" type="image/png" href="/images/logo.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="双的鱼博客" type="application/atom+xml">
+</head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/images/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">双的鱼博客</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/weibo" class="waves-effect waves-light">
+      
+      <i class="fa fa-comment" style="zoom: 0.6;"></i>
+      
+      <span>微博</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/album" class="waves-effect waves-light">
+      
+      <i class="fa fa-camera-retro" style="zoom: 0.6;"></i>
+      
+      <span>相册</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/images/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">双的鱼博客</div>
+        <div class="logo-desc">
+            
+            双的鱼博客，记录我的学习和感想
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/weibo" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fa fa-comment"></i>
+			
+			微博
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/album" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fa fa-camera-retro"></i>
+			
+			相册
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/gallery/wixtoolset.jpeg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">通过wix4制作golang程序的windows安装包</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+        height: auto;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+        max-height: calc(100vh - 10rem);
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+        overflow: auto;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Go/">
+                                <span class="chip bg-color">Go</span>
+                            </a>
+                        
+                            <a href="/tags/WixToolset/">
+                                <span class="chip bg-color">WixToolset</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E6%8A%80%E6%9C%AF/" class="post-category">
+                                技术
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2024-05-15
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    2.8k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    12 分
+                </div>
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="以系统服务运行程序"><a href="#以系统服务运行程序" class="headerlink" title="以系统服务运行程序"></a>以系统服务运行程序</h2><p>在windows上运行golang程序的时候总会有一个令人讨厌的运行窗口，我们可以使用第三方库来将程序以windows系统服务的方式运行。<br />使用库：<a target="_blank" rel="noopener" href="https://github.com/kardianos/service">https://github.com/kardianos/service</a><br />直接来看库里的简单示例：<a target="_blank" rel="noopener" href="https://github.com/kardianos/service/blob/master/example/simple/main.go">https://github.com/kardianos/service/blob/master/example/simple/main.go</a></p>
+<pre class="language-go" data-language="go"><code class="language-go"><span class="token comment">// simple does nothing except block while running the service.</span>
+<span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+	<span class="token string">"log"</span>
+
+	<span class="token string">"github.com/kardianos/service"</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">var</span> logger service<span class="token punctuation">.</span>Logger
+
+<span class="token keyword">type</span> program <span class="token keyword">struct</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>p <span class="token operator">*</span>program<span class="token punctuation">)</span> <span class="token function">Start</span><span class="token punctuation">(</span>s service<span class="token punctuation">.</span>Service<span class="token punctuation">)</span> <span class="token builtin">error</span> <span class="token punctuation">&#123;</span>
+	<span class="token comment">// Start should not block. Do the actual work async.</span>
+	<span class="token keyword">go</span> p<span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token keyword">return</span> <span class="token boolean">nil</span>
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">func</span> <span class="token punctuation">(</span>p <span class="token operator">*</span>program<span class="token punctuation">)</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	<span class="token comment">// Do work here</span>
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">func</span> <span class="token punctuation">(</span>p <span class="token operator">*</span>program<span class="token punctuation">)</span> <span class="token function">Stop</span><span class="token punctuation">(</span>s service<span class="token punctuation">.</span>Service<span class="token punctuation">)</span> <span class="token builtin">error</span> <span class="token punctuation">&#123;</span>
+	<span class="token comment">// Stop should not block. Return with a few seconds.</span>
+	<span class="token keyword">return</span> <span class="token boolean">nil</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	svcConfig <span class="token operator">:=</span> <span class="token operator">&amp;</span>service<span class="token punctuation">.</span>Config<span class="token punctuation">&#123;</span>
+		Name<span class="token punctuation">:</span>        <span class="token string">"GoServiceExampleSimple"</span><span class="token punctuation">,</span>
+		DisplayName<span class="token punctuation">:</span> <span class="token string">"Go Service Example"</span><span class="token punctuation">,</span>
+		Description<span class="token punctuation">:</span> <span class="token string">"This is an example Go service."</span><span class="token punctuation">,</span>
+	<span class="token punctuation">&#125;</span>
+
+	prg <span class="token operator">:=</span> <span class="token operator">&amp;</span>program<span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+	s<span class="token punctuation">,</span> err <span class="token operator">:=</span> service<span class="token punctuation">.</span><span class="token function">New</span><span class="token punctuation">(</span>prg<span class="token punctuation">,</span> svcConfig<span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+		log<span class="token punctuation">.</span><span class="token function">Fatal</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+	logger<span class="token punctuation">,</span> err <span class="token operator">=</span> s<span class="token punctuation">.</span><span class="token function">Logger</span><span class="token punctuation">(</span><span class="token boolean">nil</span><span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+		log<span class="token punctuation">.</span><span class="token function">Fatal</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+	err <span class="token operator">=</span> s<span class="token punctuation">.</span><span class="token function">Run</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+		logger<span class="token punctuation">.</span><span class="token function">Error</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+<p>在上述代码中，我们首先创建了一个<code>program</code>结构体，并实现了<code>Service</code>接口的<code>Start</code>和<code>Stop</code>方法。<br />在<code>Start</code>方法中，我们启动了一个协程来执行实际的服务逻辑。<br /><code>run</code>方法就是你自己的服务逻辑代码，你可以在其中编写你需要的功能。<br />然后，我们创建了一个<code>Config</code>对象来配置服务的名称、显示名称和描述。<br />接下来，我们创建了一个<code>Service</code>对象并使用<code>New</code>函数初始化。<br />最后，我们调用<code>Run</code>方法来以服务方式运行我们的程序。</p>
+<p>在命令行中，你可以使用以下命令将Go程序编译为Windows服务：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">go build <span class="token parameter variable">-o</span> main.exe</code></pre>
+<p><code>main.exe</code>是生成的服务可执行文件的名称。<br />然后，你可以使用以下命令来安装服务：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">main.exe <span class="token function">install</span></code></pre>
+<p>安装成功后，你可以使用以下命令来启动、停止或卸载服务：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">main.exe start
+main.exe stop
+main.exe uninstall</code></pre>
+
+<p>但是实际使用中会有点不同，我们只需要在windows下进行服务化就行了，mac和linux本身就有服务化运行的方式，不用多次一举，所以需要判定下系统环境：</p>
+<pre class="language-go" data-language="go"><code class="language-go"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	runtime<span class="token punctuation">.</span><span class="token function">GOMAXPROCS</span><span class="token punctuation">(</span>runtime<span class="token punctuation">.</span><span class="token function">NumCPU</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+	prg <span class="token operator">:=</span> <span class="token operator">&amp;</span>program<span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+	<span class="token keyword">if</span> runtime<span class="token punctuation">.</span>GOOS <span class="token operator">==</span> <span class="token string">"windows"</span> <span class="token punctuation">&#123;</span>
+		svcConfig <span class="token operator">:=</span> <span class="token operator">&amp;</span>service<span class="token punctuation">.</span>Config<span class="token punctuation">&#123;</span>
+			Name<span class="token punctuation">:</span>        <span class="token string">"User"</span><span class="token punctuation">,</span>
+			DisplayName<span class="token punctuation">:</span> <span class="token string">"UserService"</span><span class="token punctuation">,</span>
+			Description<span class="token punctuation">:</span> <span class="token string">"User Service."</span><span class="token punctuation">,</span>
+		<span class="token punctuation">&#125;</span>
+		s<span class="token punctuation">,</span> err <span class="token operator">:=</span> service<span class="token punctuation">.</span><span class="token function">New</span><span class="token punctuation">(</span>prg<span class="token punctuation">,</span> svcConfig<span class="token punctuation">)</span>
+		<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+			<span class="token function">println</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+			<span class="token keyword">return</span>
+		<span class="token punctuation">&#125;</span>
+		serviceLogger<span class="token punctuation">,</span> err <span class="token operator">=</span> s<span class="token punctuation">.</span><span class="token function">Logger</span><span class="token punctuation">(</span><span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> <span class="token builtin">error</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+		<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+			<span class="token function">println</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+			<span class="token keyword">return</span>
+		<span class="token punctuation">&#125;</span>
+		<span class="token keyword">if</span> <span class="token function">len</span><span class="token punctuation">(</span>os<span class="token punctuation">.</span>Args<span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">1</span> <span class="token punctuation">&#123;</span>
+			err <span class="token operator">=</span> service<span class="token punctuation">.</span><span class="token function">Control</span><span class="token punctuation">(</span>s<span class="token punctuation">,</span> os<span class="token punctuation">.</span>Args<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+			<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+				serviceLogger<span class="token punctuation">.</span><span class="token function">Errorf</span><span class="token punctuation">(</span><span class="token string">"Failed (%s) : %s\n"</span><span class="token punctuation">,</span> os<span class="token punctuation">.</span>Args<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> err<span class="token punctuation">.</span><span class="token function">Error</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+				<span class="token keyword">return</span>
+			<span class="token punctuation">&#125;</span>
+			serviceLogger<span class="token punctuation">.</span><span class="token function">Errorf</span><span class="token punctuation">(</span><span class="token string">"Succeeded (%s)\n"</span><span class="token punctuation">,</span> os<span class="token punctuation">.</span>Args<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+			<span class="token keyword">return</span>
+		<span class="token punctuation">&#125;</span>
+		err <span class="token operator">=</span> s<span class="token punctuation">.</span><span class="token function">Run</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+		<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+			serviceLogger<span class="token punctuation">.</span><span class="token function">Errorf</span><span class="token punctuation">(</span><span class="token string">"Run Failed : %s\n"</span><span class="token punctuation">,</span> err<span class="token punctuation">.</span><span class="token function">Error</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+		<span class="token punctuation">&#125;</span>
+	<span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+		prg<span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+<p>类似于这样，不是windows的话，直接运行主流程逻辑<code>prg.run()</code>就行。</p>
+<h2 id="安装wix4"><a href="#安装wix4" class="headerlink" title="安装wix4"></a>安装wix4</h2><p>wix最新的是版本5，其中4和5都是比较新的，3版本就比较老了，差异很大，不能直接拿来用，如果你们有老项目是用wix3打包的话，有个简单的方法可以将wix3的配置文件一键转换成wix4。<br />使用Visual Studio：<br /><img src="https://cdn.nlark.com/yuque/0/2024/png/115159/1715754661505-bc7a0645-a13c-4e01-82b5-a612500eb641.png#averageHue=%23ebeeed&clientId=u90aafb03-4b21-4&from=paste&height=1081&id=u48d8ef57&originHeight=2162&originWidth=3374&originalType=binary&ratio=2&rotation=0&showTitle=false&size=1081959&status=done&style=none&taskId=u21d27d98-ac19-4d6f-959c-0c9106bac09&title=&width=1687" alt="image.png"><br />直接在右侧的解决方案管理器中右键项目就能看到“升级到wix4”的选项。</p>
+<p>这是后续话题了，我们应该先安装好wix4，直接看官网文档：<a target="_blank" rel="noopener" href="https://wixtoolset.org/docs/intro/">https://wixtoolset.org/docs/intro/</a><br /><img src="https://cdn.nlark.com/yuque/0/2024/png/115159/1715754976852-5cea1ba6-63f2-4ebd-92f3-3dc31b4eaf31.png#averageHue=%2351524e&clientId=u90aafb03-4b21-4&from=paste&height=539&id=ufda71e92&originHeight=1078&originWidth=2024&originalType=binary&ratio=2&rotation=0&showTitle=false&size=180644&status=done&style=none&taskId=u2c1ac726-0f43-4647-bcda-ef05a6b6c58&title=&width=1012" alt="截屏2024-05-15 14.35.55.png"><br />是说wix4已经加入了NET工具，使用NET指令安装即可，安装完打印下版本号检查下是否安装成功。</p>
+<p>然后在windows上下载 visual studio 2022 ，这个IDE完全支持wix的编辑和运行。<br />首先打开空白的vs，点击顶部选项栏里的“扩展”-&gt;“管理扩展”，在“联机”一栏里搜索“wix”，安装wix插件：<br /><img src="https://cdn.nlark.com/yuque/0/2024/png/115159/1715755743395-ef12b613-e4ce-4d25-9766-bd819226063e.png#averageHue=%23e6ebe9&clientId=u90aafb03-4b21-4&from=paste&height=673&id=u3faff5e4&originHeight=1346&originWidth=1938&originalType=binary&ratio=2&rotation=0&showTitle=false&size=1025025&status=done&style=none&taskId=u4af5faa8-a18d-4bd6-b8f0-9fa159388b1&title=&width=969" alt="image.png"><br />HeatWave是制作WiX脚本的辅助工具。</p>
+<h2 id="制作配置文件"><a href="#制作配置文件" class="headerlink" title="制作配置文件"></a>制作配置文件</h2><p>刚开始的时候全程使用vs来编辑wix配置文件，可以便修改便验证，主要是方便，因为制作过程中是不可能一帆风顺的。</p>
+<p>创建新项目，选择MSI模板，创建完成就会进入编辑界面，左边是文件编辑界面，右边是解决方案管理界面，这里就不放了<br /><img src="https://cdn.nlark.com/yuque/0/2024/png/115159/1715756921225-9d24e825-aa12-4713-bea7-4a952bc2c972.png#averageHue=%23ddd3c2&clientId=u90aafb03-4b21-4&from=paste&height=695&id=u13e3cc0c&originHeight=1390&originWidth=2080&originalType=binary&ratio=2&rotation=0&showTitle=false&size=700488&status=done&style=none&taskId=u05a145fb-1312-4d55-9217-138f9aa2163&title=&width=1040" alt="image.png"></p>
+<p>然后在解决方案管理界面，右键“依赖项”-&gt;“管理NuGet程序包”，安装必要的插件，安装好之后，配置文件自动会同步更新，这里安装下面三个，选择对应的4版本</p>
+<ul>
+<li>WixToolset.Heat</li>
+<li>WixToolset.UI.wixext</li>
+<li>WixToolset.Util.wixext</li>
+</ul>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/115159/1715757665486-60fa585d-bf22-4539-b7f5-5ea105e11365.png#averageHue=%23e3e8e8&clientId=u90aafb03-4b21-4&from=paste&height=1058&id=ub9d08a55&originHeight=2116&originWidth=3392&originalType=binary&ratio=2&rotation=0&showTitle=false&size=2371034&status=done&style=none&taskId=u0c14c363-060a-4590-a8af-fe477ebcf8b&title=&width=1696" alt="image.png"></p>
+<p>然后就是根据项目需求进行对应的配置编辑了。<br />这里我直接放示例，然后再挑重点说明一下。</p>
+<h3 id="userService-wixproj"><a href="#userService-wixproj" class="headerlink" title="userService.wixproj"></a>userService.wixproj</h3><pre class="language-go" data-language="go"><code class="language-go"><span class="token operator">&lt;</span>Project Sdk<span class="token operator">=</span><span class="token string">"WixToolset.Sdk/4.0.5"</span><span class="token operator">></span>
+    <span class="token operator">&lt;</span>ItemGroup<span class="token operator">></span>
+        <span class="token operator">&lt;</span>PackageReference Include<span class="token operator">=</span><span class="token string">"WixToolset.Heat"</span> Version<span class="token operator">=</span><span class="token string">"4.0.5"</span> <span class="token operator">/</span><span class="token operator">></span>
+        <span class="token operator">&lt;</span>PackageReference Include<span class="token operator">=</span><span class="token string">"WixToolset.UI.wixext"</span> Version<span class="token operator">=</span><span class="token string">"4.0.5"</span> <span class="token operator">/</span><span class="token operator">></span>
+        <span class="token operator">&lt;</span>PackageReference Include<span class="token operator">=</span><span class="token string">"WixToolset.Util.wixext"</span> Version<span class="token operator">=</span><span class="token string">"4.0.5"</span> <span class="token operator">/</span><span class="token operator">></span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>ItemGroup<span class="token operator">></span>
+
+    <span class="token operator">&lt;</span>PropertyGroup<span class="token operator">></span>
+        <span class="token operator">&lt;</span>DefineConstants<span class="token operator">></span>BasePath<span class="token operator">=</span><span class="token punctuation">.</span><span class="token punctuation">.</span>\build\win<span class="token operator">&lt;</span><span class="token operator">/</span>DefineConstants<span class="token operator">></span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>PropertyGroup<span class="token operator">></span>
+
+    <span class="token operator">&lt;</span>PropertyGroup Condition<span class="token operator">=</span><span class="token string">"'$(Configuration)|$(Platform)'=='Debug|x86'"</span><span class="token operator">></span>
+        <span class="token operator">&lt;</span>Cultures<span class="token operator">></span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>Cultures<span class="token operator">></span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>PropertyGroup<span class="token operator">></span>
+
+    <span class="token operator">&lt;</span>ItemGroup<span class="token operator">></span>
+        <span class="token operator">&lt;</span>Content Include<span class="token operator">=</span><span class="token string">"filter.xslt"</span> <span class="token operator">/</span><span class="token operator">></span>
+        <span class="token operator">&lt;</span>Content Include<span class="token operator">=</span><span class="token string">"assets/UserService.ico"</span> <span class="token operator">/</span><span class="token operator">></span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>ItemGroup<span class="token operator">></span>
+
+    <span class="token operator">&lt;</span>ItemGroup<span class="token operator">></span>
+        <span class="token operator">&lt;</span>HarvestDirectory Include<span class="token operator">=</span><span class="token string">"..\build\win"</span><span class="token operator">></span>
+            <span class="token operator">&lt;</span>ComponentGroupName<span class="token operator">></span>PublishedComponents<span class="token operator">&lt;</span><span class="token operator">/</span>ComponentGroupName<span class="token operator">></span>
+            <span class="token operator">&lt;</span>DirectoryRefId<span class="token operator">></span>INSTALLFOLDER<span class="token operator">&lt;</span><span class="token operator">/</span>DirectoryRefId<span class="token operator">></span>
+            <span class="token operator">&lt;</span>SuppressRootDirectory<span class="token operator">></span><span class="token boolean">true</span><span class="token operator">&lt;</span><span class="token operator">/</span>SuppressRootDirectory<span class="token operator">></span>
+            <span class="token operator">&lt;</span>KeepEmptyDirectories<span class="token operator">></span><span class="token boolean">false</span><span class="token operator">&lt;</span><span class="token operator">/</span>KeepEmptyDirectories<span class="token operator">></span>
+            <span class="token operator">&lt;</span>SuppressRegistry<span class="token operator">></span><span class="token boolean">true</span><span class="token operator">&lt;</span><span class="token operator">/</span>SuppressRegistry<span class="token operator">></span>
+            <span class="token operator">&lt;</span>PreprocessorVariable<span class="token operator">></span><span class="token keyword">var</span><span class="token punctuation">.</span>BasePath<span class="token operator">&lt;</span><span class="token operator">/</span>PreprocessorVariable<span class="token operator">></span>
+            <span class="token operator">&lt;</span>SuppressCom<span class="token operator">></span><span class="token boolean">true</span><span class="token operator">&lt;</span><span class="token operator">/</span>SuppressCom<span class="token operator">></span>
+            <span class="token operator">&lt;</span>Transforms<span class="token operator">></span>filter<span class="token punctuation">.</span>xslt<span class="token operator">&lt;</span><span class="token operator">/</span>Transforms<span class="token operator">></span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>HarvestDirectory<span class="token operator">></span>
+        <span class="token operator">&lt;</span>BindPath Include<span class="token operator">=</span><span class="token string">"..\build\win"</span> <span class="token operator">/</span><span class="token operator">></span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>ItemGroup<span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>Project<span class="token operator">></span></code></pre>
+<p>这个是项目主配置文件，其文件名决定了最终生成的安装包的名称，比如 userService.wixproj 最终生成的msi安装包是 <strong>userService.msi</strong></p>
+<p>这里比较重要的是这一串：</p>
+<pre class="language-go" data-language="go"><code class="language-go"><span class="token operator">&lt;</span>ItemGroup<span class="token operator">></span>
+    <span class="token operator">&lt;</span>HarvestDirectory Include<span class="token operator">=</span><span class="token string">"..\build\win"</span><span class="token operator">></span>
+        <span class="token operator">&lt;</span>ComponentGroupName<span class="token operator">></span>PublishedComponents<span class="token operator">&lt;</span><span class="token operator">/</span>ComponentGroupName<span class="token operator">></span>
+        <span class="token operator">&lt;</span>DirectoryRefId<span class="token operator">></span>INSTALLFOLDER<span class="token operator">&lt;</span><span class="token operator">/</span>DirectoryRefId<span class="token operator">></span>
+        <span class="token operator">&lt;</span>SuppressRootDirectory<span class="token operator">></span><span class="token boolean">true</span><span class="token operator">&lt;</span><span class="token operator">/</span>SuppressRootDirectory<span class="token operator">></span>
+        <span class="token operator">&lt;</span>KeepEmptyDirectories<span class="token operator">></span><span class="token boolean">false</span><span class="token operator">&lt;</span><span class="token operator">/</span>KeepEmptyDirectories<span class="token operator">></span>
+        <span class="token operator">&lt;</span>SuppressRegistry<span class="token operator">></span><span class="token boolean">true</span><span class="token operator">&lt;</span><span class="token operator">/</span>SuppressRegistry<span class="token operator">></span>
+        <span class="token operator">&lt;</span>PreprocessorVariable<span class="token operator">></span><span class="token keyword">var</span><span class="token punctuation">.</span>BasePath<span class="token operator">&lt;</span><span class="token operator">/</span>PreprocessorVariable<span class="token operator">></span>
+        <span class="token operator">&lt;</span>SuppressCom<span class="token operator">></span><span class="token boolean">true</span><span class="token operator">&lt;</span><span class="token operator">/</span>SuppressCom<span class="token operator">></span>
+        <span class="token operator">&lt;</span>Transforms<span class="token operator">></span>filter<span class="token punctuation">.</span>xslt<span class="token operator">&lt;</span><span class="token operator">/</span>Transforms<span class="token operator">></span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>HarvestDirectory<span class="token operator">></span>
+    <span class="token operator">&lt;</span>BindPath Include<span class="token operator">=</span><span class="token string">"..\build\win"</span> <span class="token operator">/</span><span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>ItemGroup<span class="token operator">></span></code></pre>
+<p>作用是将项目中“**..\build\win**”下的内容打包进msi包，比如前端静态文件，将其打包进去，安装后才会重新生成，否则没有前端文件，将无法访问前端界面。</p>
+<h3 id="package-wxs"><a href="#package-wxs" class="headerlink" title="package.wxs"></a>package.wxs</h3><p>这个是安装包配置文件，配置安装包安装过程中的UI、逻辑等，由于需要着重说明的比较多，我直接在代码上注释了</p>
+<pre class="language-go" data-language="go"><code class="language-go"><span class="token operator">&lt;</span>Wix xmlns<span class="token operator">=</span><span class="token string">"http://wixtoolset.org/schemas/v4/wxs"</span><span class="token operator">></span>
+
+  <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 定义常量 <span class="token operator">--</span><span class="token operator">></span>
+  <span class="token operator">&lt;</span>?define UpgradeCode <span class="token operator">=</span> <span class="token string">"bc1adac3-47ed-4374-9c21-1298243b6ed7"</span> ?<span class="token operator">></span>
+  <span class="token operator">&lt;</span>?define BuildVersion <span class="token operator">=</span> <span class="token string">"1.0.0.0"</span> ?<span class="token operator">></span>
+
+  <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 可以定义安装界面显示的名称、语言、版本号等属性 <span class="token operator">--</span><span class="token operator">></span>
+  <span class="token operator">&lt;</span>Package Name<span class="token operator">=</span><span class="token string">"!(loc.ProductName)"</span> Language<span class="token operator">=</span><span class="token string">"!(loc.Language)"</span> Manufacturer<span class="token operator">=</span><span class="token string">"!(loc.CompanyName)"</span> Version<span class="token operator">=</span><span class="token string">"$(var.BuildVersion)"</span> UpgradeCode<span class="token operator">=</span><span class="token string">"$(var.UpgradeCode)"</span> Codepage<span class="token operator">=</span><span class="token string">"65001"</span><span class="token operator">></span>
+
+    <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 定义安装包摘要信息（Summary Information）的一部分 <span class="token operator">--</span><span class="token operator">></span>
+    <span class="token operator">&lt;</span>SummaryInformation Manufacturer<span class="token operator">=</span><span class="token string">"!(loc.CompanyName)"</span> Description<span class="token operator">=</span><span class="token string">"!(loc.Description)"</span> Keywords<span class="token operator">=</span><span class="token string">"!(loc.Keywords)"</span> <span class="token operator">/</span><span class="token operator">></span>
+
+    <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 这行代码表示在执行主要升级时，如果发生了降级（即安装了旧版本），则显示从本地化字符串文件中读取的降级错误消息 <span class="token operator">--</span><span class="token operator">></span>
+    <span class="token operator">&lt;</span>MajorUpgrade DowngradeErrorMessage<span class="token operator">=</span><span class="token string">"!(loc.DowngradeError)"</span> <span class="token operator">/</span><span class="token operator">></span>
+
+    <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 定义升级策略的一部分。它指定了在安装新版本时如何处理旧版本的升级 <span class="token operator">--</span><span class="token operator">></span>
+    <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> Id 属性用于指定升级代码 <span class="token operator">--</span><span class="token operator">></span>
+    <span class="token operator">&lt;</span>Upgrade Id<span class="token operator">=</span><span class="token string">"$(var.UpgradeCode)"</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 指定特定版本的升级策略。在这里，它指定了升级的最低版本和最高版本 <span class="token operator">--</span><span class="token operator">></span>
+        <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> OnlyDetect 属性指示是否仅检测旧版本而不执行实际升级。在这里，它设置为 no，表示执行实际升级 <span class="token operator">--</span><span class="token operator">></span>
+        <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> Property 属性指定了一个用于存储正在升级的旧版本号的属性名称 <span class="token operator">--</span><span class="token operator">></span>
+        <span class="token operator">&lt;</span>UpgradeVersion Minimum<span class="token operator">=</span><span class="token string">"0.0.0.1"</span> IncludeMinimum<span class="token operator">=</span><span class="token string">"yes"</span> OnlyDetect<span class="token operator">=</span><span class="token string">"no"</span> Maximum<span class="token operator">=</span><span class="token string">"$(var.BuildVersion)"</span> IncludeMaximum<span class="token operator">=</span><span class="token string">"no"</span> Property<span class="token operator">=</span><span class="token string">"OLDERVERSIONBEINGUPGRADED"</span> <span class="token operator">/</span><span class="token operator">></span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>Upgrade<span class="token operator">></span>
+
+    <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 定义媒体模板的一部分。媒体模板用于指定安装包在创建安装媒体（如安装 CD、DVD 或安装程序下载文件）时的行为 <span class="token operator">--</span><span class="token operator">></span>
+    <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> EmbedCab 属性用于指定是否在安装媒体中嵌入 CAB 文件。CAB 文件是一种用于存储 Windows 安装程序文件的压缩文件格式。在这里，设置为 <span class="token string">"yes"</span> 表示应该将 CAB 文件嵌入到安装媒体中 <span class="token operator">--</span><span class="token operator">></span>
+    <span class="token operator">&lt;</span>MediaTemplate EmbedCab<span class="token operator">=</span><span class="token string">"yes"</span> <span class="token operator">/</span><span class="token operator">></span>
+
+    <span class="token operator">&lt;</span>Icon Id<span class="token operator">=</span><span class="token string">"icon.ico"</span> SourceFile<span class="token operator">=</span><span class="token string">"assets/userService.ico"</span> <span class="token operator">/</span><span class="token operator">></span>
+
+    <span class="token operator">&lt;</span>Property Id<span class="token operator">=</span><span class="token string">"ARPPRODUCTICON"</span> Value<span class="token operator">=</span><span class="token string">"icon.ico"</span> <span class="token operator">/</span><span class="token operator">></span>
+
+    <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 定义用户界面（UI） <span class="token operator">--</span><span class="token operator">></span>
+	<span class="token operator">&lt;</span>UI Id<span class="token operator">=</span><span class="token string">"UserInterface"</span><span class="token operator">></span>
+	    <span class="token operator">&lt;</span>Property Id<span class="token operator">=</span><span class="token string">"WIXUI_INSTALLDIR"</span> Value<span class="token operator">=</span><span class="token string">"TARGETDIR"</span> <span class="token operator">/</span><span class="token operator">></span>
+
+		<span class="token operator">&lt;</span>TextStyle Id<span class="token operator">=</span><span class="token string">"WixUI_Font_Normal"</span> FaceName<span class="token operator">=</span><span class="token string">"Tahoma"</span> Size<span class="token operator">=</span><span class="token string">"8"</span> <span class="token operator">/</span><span class="token operator">></span>
+		<span class="token operator">&lt;</span>TextStyle Id<span class="token operator">=</span><span class="token string">"WixUI_Font_Bigger"</span> FaceName<span class="token operator">=</span><span class="token string">"Tahoma"</span> Size<span class="token operator">=</span><span class="token string">"12"</span> <span class="token operator">/</span><span class="token operator">></span>
+		<span class="token operator">&lt;</span>TextStyle Id<span class="token operator">=</span><span class="token string">"WixUI_Font_Title"</span> FaceName<span class="token operator">=</span><span class="token string">"Tahoma"</span> Size<span class="token operator">=</span><span class="token string">"9"</span> Bold<span class="token operator">=</span><span class="token string">"yes"</span> Red<span class="token operator">=</span><span class="token string">"255"</span> Green<span class="token operator">=</span><span class="token string">"255"</span> Blue<span class="token operator">=</span><span class="token string">"255"</span> <span class="token operator">/</span><span class="token operator">></span>
+
+		<span class="token operator">&lt;</span>Property Id<span class="token operator">=</span><span class="token string">"DefaultUIFont"</span> Value<span class="token operator">=</span><span class="token string">"WixUI_Font_Normal"</span> <span class="token operator">/</span><span class="token operator">></span>
+		<span class="token operator">&lt;</span>Property Id<span class="token operator">=</span><span class="token string">"WixUI_Mode"</span> Value<span class="token operator">=</span><span class="token string">"Custom"</span> <span class="token operator">/</span><span class="token operator">></span>
+
+		<span class="token operator">&lt;</span>DialogRef Id<span class="token operator">=</span><span class="token string">"ProgressDlg"</span> <span class="token operator">/</span><span class="token operator">></span>
+		<span class="token operator">&lt;</span>DialogRef Id<span class="token operator">=</span><span class="token string">"ErrorDlg"</span> <span class="token operator">/</span><span class="token operator">></span>
+		<span class="token operator">&lt;</span>DialogRef Id<span class="token operator">=</span><span class="token string">"FilesInUse"</span> <span class="token operator">/</span><span class="token operator">></span>
+		<span class="token operator">&lt;</span>DialogRef Id<span class="token operator">=</span><span class="token string">"FatalError"</span> <span class="token operator">/</span><span class="token operator">></span>
+		<span class="token operator">&lt;</span>DialogRef Id<span class="token operator">=</span><span class="token string">"UserExit"</span> <span class="token operator">/</span><span class="token operator">></span>
+
+		<span class="token operator">&lt;</span>Publish Dialog<span class="token operator">=</span><span class="token string">"ExitDialog"</span> Control<span class="token operator">=</span><span class="token string">"Finish"</span> Event<span class="token operator">=</span><span class="token string">"EndDialog"</span> Value<span class="token operator">=</span><span class="token string">"Return"</span> Order<span class="token operator">=</span><span class="token string">"999"</span> <span class="token operator">/</span><span class="token operator">></span>
+		<span class="token operator">&lt;</span>Publish Dialog<span class="token operator">=</span><span class="token string">"WelcomeDlg"</span> Control<span class="token operator">=</span><span class="token string">"Next"</span> Event<span class="token operator">=</span><span class="token string">"EndDialog"</span> Value<span class="token operator">=</span><span class="token string">"Return"</span> Order<span class="token operator">=</span><span class="token string">"2"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>Publish<span class="token operator">></span>
+	<span class="token operator">&lt;</span><span class="token operator">/</span>UI<span class="token operator">></span>
+
+    <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 引用了一个名为 <span class="token string">"WixUI_Common"</span> 的预定义用户界面 <span class="token operator">--</span><span class="token operator">></span>
+    <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 在使用 <span class="token operator">&lt;</span>UIRef<span class="token operator">></span> 元素引用预定义用户界面时，WiX 工具集会自动将相应的对话框和行为添加到您的安装程序项目中 <span class="token operator">--</span><span class="token operator">></span>
+	<span class="token operator">&lt;</span>UIRef Id<span class="token operator">=</span><span class="token string">"WixUI_Common"</span> <span class="token operator">/</span><span class="token operator">></span>
+
+    <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 配置安装界面的两张制定位置的图片 <span class="token operator">--</span><span class="token operator">></span>
+    <span class="token operator">&lt;</span>WixVariable Id<span class="token operator">=</span><span class="token string">"WixUIDialogBmp"</span> Value<span class="token operator">=</span><span class="token string">"assets/Background.bmp"</span> <span class="token operator">/</span><span class="token operator">></span>
+    <span class="token operator">&lt;</span>WixVariable Id<span class="token operator">=</span><span class="token string">"WixUIBannerBmp"</span> Value<span class="token operator">=</span><span class="token string">"assets/Banner.bmp"</span> <span class="token operator">/</span><span class="token operator">></span>
+
+    <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 这里引入两个组件，在下一个文件中 <span class="token operator">--</span><span class="token operator">></span>
+    <span class="token operator">&lt;</span>Feature Id<span class="token operator">=</span><span class="token string">"Main"</span><span class="token operator">></span>
+      <span class="token operator">&lt;</span>ComponentGroupRef Id<span class="token operator">=</span><span class="token string">"DataFolderFiles"</span> <span class="token operator">/</span><span class="token operator">></span>
+      <span class="token operator">&lt;</span>ComponentGroupRef Id<span class="token operator">=</span><span class="token string">"PublishedComponents"</span> <span class="token operator">/</span><span class="token operator">></span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>Feature<span class="token operator">></span>
+  <span class="token operator">&lt;</span><span class="token operator">/</span>Package<span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>Wix<span class="token operator">></span>
+</code></pre>
+
+<h3 id="folders-wxs"><a href="#folders-wxs" class="headerlink" title="folders.wxs"></a>folders.wxs</h3><p>这个文件则配置要运行的程序，也就是我们编译好的go运行程序</p>
+<pre class="language-go" data-language="go"><code class="language-go"><span class="token operator">&lt;</span>Wix xmlns<span class="token operator">=</span><span class="token string">"http://wixtoolset.org/schemas/v4/wxs"</span><span class="token operator">></span>
+  <span class="token operator">&lt;</span>Fragment<span class="token operator">></span>
+	  <span class="token operator">&lt;</span>DirectoryRef Id<span class="token operator">=</span><span class="token string">"INSTALLFOLDER"</span><span class="token operator">></span>
+		  <span class="token operator">&lt;</span>Component Id<span class="token operator">=</span><span class="token string">"UserServiceEXE"</span> Guid<span class="token operator">=</span><span class="token string">"&#123;8B834EB9-4597-4629-BA5C-2C964F3E261C&#125;"</span><span class="token operator">></span>
+			  <span class="token operator">&lt;</span>File Id<span class="token operator">=</span><span class="token string">"UserService"</span> Source<span class="token operator">=</span><span class="token string">"..\build\win\userService.exe"</span> KeyPath<span class="token operator">=</span><span class="token string">"yes"</span> <span class="token operator">/</span><span class="token operator">></span>
+			  <span class="token operator">&lt;</span>ServiceInstall Id<span class="token operator">=</span><span class="token string">"UserService"</span> Type<span class="token operator">=</span><span class="token string">"ownProcess"</span> Vital<span class="token operator">=</span><span class="token string">"yes"</span> Name<span class="token operator">=</span><span class="token string">"UserService"</span> DisplayName<span class="token operator">=</span><span class="token string">"UserService"</span> Description<span class="token operator">=</span><span class="token string">"UserService"</span> Start<span class="token operator">=</span><span class="token string">"auto"</span> Account<span class="token operator">=</span><span class="token string">".\LocalSystem"</span> Interactive<span class="token operator">=</span><span class="token string">"no"</span> ErrorControl<span class="token operator">=</span><span class="token string">"ignore"</span> <span class="token operator">/</span><span class="token operator">></span>
+			  <span class="token operator">&lt;</span>ServiceControl Id<span class="token operator">=</span><span class="token string">"StartUserService"</span> Name<span class="token operator">=</span><span class="token string">"UserService"</span> Start<span class="token operator">=</span><span class="token string">"install"</span> Wait<span class="token operator">=</span><span class="token string">"no"</span> Stop<span class="token operator">=</span><span class="token string">"both"</span> Remove<span class="token operator">=</span><span class="token string">"uninstall"</span> <span class="token operator">/</span><span class="token operator">></span>
+			  <span class="token operator">&lt;</span>RemoveFile Id<span class="token operator">=</span><span class="token string">"RemoveUserServiceFiles"</span> Name<span class="token operator">=</span><span class="token string">"userService.exe"</span> On<span class="token operator">=</span><span class="token string">"uninstall"</span> <span class="token operator">/</span><span class="token operator">></span>
+			  <span class="token operator">&lt;</span>Environment Id<span class="token operator">=</span><span class="token string">"GIN_MODE"</span> Name<span class="token operator">=</span><span class="token string">"GIN_MODE"</span> Value<span class="token operator">=</span><span class="token string">"release"</span> Permanent<span class="token operator">=</span><span class="token string">"no"</span> Part<span class="token operator">=</span><span class="token string">"all"</span> Action<span class="token operator">=</span><span class="token string">"set"</span> System<span class="token operator">=</span><span class="token string">"yes"</span> <span class="token operator">/</span><span class="token operator">></span>
+		  <span class="token operator">&lt;</span><span class="token operator">/</span>Component<span class="token operator">></span>
+	  <span class="token operator">&lt;</span><span class="token operator">/</span>DirectoryRef<span class="token operator">></span>
+
+	  <span class="token operator">&lt;</span>ComponentGroup Id<span class="token operator">=</span><span class="token string">"DataFolderFiles"</span><span class="token operator">></span>
+		  <span class="token operator">&lt;</span>ComponentRef Id<span class="token operator">=</span><span class="token string">"UserServiceEXE"</span> <span class="token operator">/</span><span class="token operator">></span>
+	  <span class="token operator">&lt;</span><span class="token operator">/</span>ComponentGroup<span class="token operator">></span>
+	  
+    <span class="token operator">&lt;</span>StandardDirectory Id<span class="token operator">=</span><span class="token string">"ProgramFiles6432Folder"</span><span class="token operator">></span>
+      <span class="token operator">&lt;</span>Directory Id<span class="token operator">=</span><span class="token string">"INSTALLFOLDER"</span> Name<span class="token operator">=</span><span class="token string">"!(bind.Property.ProductName)"</span> <span class="token operator">/</span><span class="token operator">></span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>StandardDirectory<span class="token operator">></span>
+  <span class="token operator">&lt;</span><span class="token operator">/</span>Fragment<span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>Wix<span class="token operator">></span>
+</code></pre>
+
+<h3 id="语言文件"><a href="#语言文件" class="headerlink" title="语言文件"></a>语言文件</h3><p>另外还可以配置多语言，项目中有几个语言文件，wix对应的会打包这些语言的安装包，比如下面的是英文语言包 en-us.wxl：</p>
+<pre class="language-go" data-language="go"><code class="language-go"><span class="token operator">&lt;</span>WixLocalization xmlns<span class="token operator">=</span><span class="token string">"http://wixtoolset.org/schemas/v4/wxl"</span> Culture<span class="token operator">=</span><span class="token string">"en-US"</span><span class="token operator">></span>
+    <span class="token operator">&lt;</span>String Id<span class="token operator">=</span><span class="token string">"DowngradeError"</span> Value<span class="token operator">=</span><span class="token string">"A newer version of [ProductName] is already installed."</span> <span class="token operator">/</span><span class="token operator">></span>
+    <span class="token operator">&lt;</span>String Id<span class="token operator">=</span><span class="token string">"ProductName"</span> Value<span class="token operator">=</span><span class="token string">"UserService"</span> <span class="token operator">/</span><span class="token operator">></span>
+    <span class="token operator">&lt;</span>String Id<span class="token operator">=</span><span class="token string">"ProductNameFolder"</span> Value<span class="token operator">=</span><span class="token string">"UserService"</span> <span class="token operator">/</span><span class="token operator">></span>
+    <span class="token operator">&lt;</span>String Id<span class="token operator">=</span><span class="token string">"Language"</span> Value<span class="token operator">=</span><span class="token string">"1033"</span> <span class="token operator">/</span><span class="token operator">></span>
+    <span class="token operator">&lt;</span>String Id<span class="token operator">=</span><span class="token string">"CompanyName"</span> Value<span class="token operator">=</span><span class="token string">"Ali Technology Pte. Ltd."</span> <span class="token operator">/</span><span class="token operator">></span>
+    <span class="token operator">&lt;</span>String Id<span class="token operator">=</span><span class="token string">"Description"</span> Value<span class="token operator">=</span><span class="token string">"User Service for Windows"</span> <span class="token operator">/</span><span class="token operator">></span>
+    <span class="token operator">&lt;</span>String Id<span class="token operator">=</span><span class="token string">"Keywords"</span> Value<span class="token operator">=</span><span class="token string">"dotnet, core, application, installer, User Service"</span> <span class="token operator">/</span><span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>WixLocalization<span class="token operator">></span></code></pre>
+<p>对应的日文的文件则叫：ja-jp.wxl，以此类推</p>
+<h2 id="自动化安装脚本"><a href="#自动化安装脚本" class="headerlink" title="自动化安装脚本"></a>自动化安装脚本</h2><p>以上，我们制作好了wix打包配置文件，将它们放入项目目录中，这是目录结构：</p>
+<blockquote>
+<p>userService<br>-……<br>-angular<br>-golang<br>-build_win.bat<br>-win.install<br>–assets<br>–userService.wixproj<br>–package.wxs<br>–folders.wxs<br>–en-us.wxl</p>
+</blockquote>
+<p>这是自动化打包脚本，包括前后端项目的编译等：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">@echo off
+<span class="token builtin class-name">echo</span> %1
+
+<span class="token builtin class-name">set</span> <span class="token assign-left variable">BUILDNUMBER</span><span class="token operator">=</span>%1
+<span class="token builtin class-name">echo</span> %BUILDNUMBER%
+
+@REM <span class="token builtin class-name">set</span> <span class="token assign-left variable">INCLUDE_PATH</span><span class="token operator">=</span>%PROJECT_ROOT%<span class="token punctuation">\</span>GoLangDockerImage<span class="token punctuation">\</span>include
+@REM <span class="token builtin class-name">set</span> <span class="token assign-left variable">LIBRARY_PATH</span><span class="token operator">=</span>%PROJECT_ROOT%<span class="token punctuation">\</span>Libs<span class="token punctuation">\</span>windows
+
+<span class="token builtin class-name">set</span> <span class="token assign-left variable">CGO_ENABLED</span><span class="token operator">=</span><span class="token number">1</span>
+@REM <span class="token builtin class-name">set</span> <span class="token assign-left variable">CGO_CFLAGS</span><span class="token operator">=</span>-I%INCLUDE_PATH%
+@REM <span class="token builtin class-name">set</span> <span class="token assign-left variable">CGO_CXXFLAGS</span><span class="token operator">=</span>-I%INCLUDE_PATH%
+@REM <span class="token builtin class-name">set</span> <span class="token assign-left variable">CGO_LDFLAGS</span><span class="token operator">=</span>-L%LIBRARY_PATH%
+
+<span class="token builtin class-name">cd</span> .<span class="token punctuation">\</span>angular
+
+<span class="token builtin class-name">echo</span> -- <span class="token function">install</span> packages --
+call <span class="token function">npm</span> <span class="token function">install</span> --legacy-peer-deps
+
+<span class="token builtin class-name">echo</span> -- display ng version --
+call ng version
+<span class="token builtin class-name">echo</span> -- start build angular --
+call ng build --build-optimizer
+
+<span class="token builtin class-name">cd</span> <span class="token punctuation">..</span>
+<span class="token function">mkdir</span> build
+<span class="token function">mkdir</span> .<span class="token punctuation">\</span>build<span class="token punctuation">\</span>win
+<span class="token builtin class-name">cd</span> .<span class="token punctuation">\</span>golang
+<span class="token builtin class-name">echo</span> -- create win printer code --
+<span class="token builtin class-name">cd</span> .<span class="token punctuation">\</span>controller
+
+<span class="token builtin class-name">echo</span> -- build Coordinator generator --
+<span class="token builtin class-name">cd</span> <span class="token punctuation">..</span>
+go mod tidy
+<span class="token builtin class-name">set</span> <span class="token assign-left variable">GOOS</span><span class="token operator">=</span>windows
+<span class="token builtin class-name">set</span> <span class="token assign-left variable">GOARCH</span><span class="token operator">=</span>amd64
+go build <span class="token parameter variable">-ldflags</span> <span class="token string">"-X main.UserServiceVersion=%BUILDNUMBER%"</span> <span class="token parameter variable">-v</span> <span class="token parameter variable">-o</span> <span class="token punctuation">..</span><span class="token punctuation">\</span>build<span class="token punctuation">\</span>win<span class="token punctuation">\</span>userService.exe main.go
+
+<span class="token builtin class-name">cd</span> <span class="token punctuation">..</span><span class="token punctuation">\</span>
+<span class="token function">mkdir</span> .<span class="token punctuation">\</span>build<span class="token punctuation">\</span>win<span class="token punctuation">\</span>Public
+xcopy /s /y .<span class="token punctuation">\</span>angular<span class="token punctuation">\</span>dist<span class="token punctuation">\</span>* .<span class="token punctuation">\</span>build<span class="token punctuation">\</span>win<span class="token punctuation">\</span>Public
+
+<span class="token builtin class-name">echo</span> -- generate and run .msi --
+<span class="token builtin class-name">cd</span> .<span class="token punctuation">\</span>Kepler.Install
+dotnet build <span class="token parameter variable">--force</span> <span class="token parameter variable">-c</span> Release
+
+@REM <span class="token builtin class-name">cd</span> .<span class="token punctuation">\</span>bin<span class="token punctuation">\</span>Release<span class="token punctuation">\</span>en-US
+@REM sc delete UserService
+@REM <span class="token function">timeout</span> /t <span class="token number">15</span>
+@REM msiexec /i UserService.msi
+</code></pre>
+
+<p>完成，执行bat脚本就能自动打包成msi安装包了</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">JIANG XIAOFAN</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://shuangdeyu.github.io/2024/05/15/tong-guo-wix4-zhi-zuo-golang-cheng-xu-de-windows-an-zhuang-bao/">https://shuangdeyu.github.io/2024/05/15/tong-guo-wix4-zhi-zuo-golang-cheng-xu-de-windows-an-zhuang-bao/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">JIANG XIAOFAN</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/Go/">
+                                    <span class="chip bg-color">Go</span>
+                                </a>
+                            
+                                <a href="/tags/WixToolset/">
+                                    <span class="chip bg-color">WixToolset</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments textarea {
+        box-sizing: border-box;
+        background: url("/medias/comment_bg4.jpeg") 100% 100% no-repeat;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #4cbf30;
+        font-weight: 500;
+        text-decoration: none;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="vcomments" class="card-content" style="display: grid">
+    </div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'Cu0yGDQXYEoC2BMFqoMyqSK1-gzGzoHsz',
+        appKey: 'PYfyCYN5lI59X5Rczd5IGls5',
+        notify: 'false' === 'true',
+        verify: 'true' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '20',
+        lang: 'zh-cn',
+        placeholder: 'hi，留个脚印吧'
+    });
+</script>
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2024/05/15/tong-guo-wix4-zhi-zuo-golang-cheng-xu-de-windows-an-zhuang-bao/">
+                    <div class="card-image">
+                        
+                        <img src="/gallery/wixtoolset.jpeg" class="responsive-img" alt="通过wix4制作golang程序的windows安装包">
+                        
+                        <span class="card-title">通过wix4制作golang程序的windows安装包</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-05-15
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%8A%80%E6%9C%AF/" class="post-category">
+                                    技术
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Go/">
+                        <span class="chip bg-color">Go</span>
+                    </a>
+                    
+                    <a href="/tags/WixToolset/">
+                        <span class="chip bg-color">WixToolset</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2024/04/07/wei-lao-tou-wo-cheng-mo-jiao-jiao-zhu-liao/">
+                    <div class="card-image">
+                        
+                        <img src="/gallery/wuxia1.jpeg" class="responsive-img" alt="喂老头，我成魔教教主了">
+                        
+                        <span class="card-title">喂老头，我成魔教教主了</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-04-07
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%B0%8F%E8%AF%B4/" class="post-category">
+                                    小说
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%AD%A6%E4%BE%A0/">
+                        <span class="chip bg-color">武侠</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="113118807"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2024</span>
+            
+            <span id="year">2019</span>
+            <a href="/about" target="_blank">JIANG XIAOFAN</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">109.8k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
