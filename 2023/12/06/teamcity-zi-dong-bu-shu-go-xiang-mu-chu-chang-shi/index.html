@@ -1,0 +1,1433 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Teamcity自动部署Go项目初尝试, 双的鱼 双的鱼博客 hexo博客 个人博客">
+    <meta name="description" content="双的鱼博客，记录我的学习和感想">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Teamcity自动部署Go项目初尝试 | 双的鱼博客</title>
+    <link rel="icon" type="image/png" href="/images/logo.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="双的鱼博客" type="application/atom+xml">
+</head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/images/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">双的鱼博客</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/weibo" class="waves-effect waves-light">
+      
+      <i class="fa fa-comment" style="zoom: 0.6;"></i>
+      
+      <span>微博</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/album" class="waves-effect waves-light">
+      
+      <i class="fa fa-camera-retro" style="zoom: 0.6;"></i>
+      
+      <span>相册</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/images/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">双的鱼博客</div>
+        <div class="logo-desc">
+            
+            双的鱼博客，记录我的学习和感想
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/weibo" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fa fa-comment"></i>
+			
+			微博
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/album" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fa fa-camera-retro"></i>
+			
+			相册
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/gallery/teamcity.png')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Teamcity自动部署Go项目初尝试</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+        height: auto;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+        max-height: calc(100vh - 10rem);
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+        overflow: auto;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Go/">
+                                <span class="chip bg-color">Go</span>
+                            </a>
+                        
+                            <a href="/tags/CI-CD/">
+                                <span class="chip bg-color">CI/CD</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E6%8A%80%E6%9C%AF/" class="post-category">
+                                技术
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2023-12-06
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    2k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    7 分
+                </div>
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>首先介绍一下TeamCity是什么：</p>
+<blockquote>
+<p>TeamCity 是一款由 JetBrains 开发的强大的持续集成（Continuous Integration，CI）和持续部署（Continuous Deployment，CD）工具。它帮助开发团队自动化构建、测试和部署过程，以确保软件项目的质量和快速交付。</p>
+</blockquote>
+<p>其实就是类似于Jenkins的CI/CD工具，但界面更加美化，操作更简单，今天就来尝试一下使用teamcity自动构建部署Go程序。</p>
+<h2 id="一、安装"><a href="#一、安装" class="headerlink" title="一、安装"></a>一、安装</h2><p>安装就不多说了，网上教程很多，各个环境的都有，我是mac环境，通过docker方式安装，按照下面这个教程来安装的：<br><a target="_blank" rel="noopener" href="https://www.yuque.com/shuangyu-rcged/network/ueyyn4quawwbeyiw">https://www.yuque.com/shuangyu-rcged/network/ueyyn4quawwbeyiw</a><br>安装的镜像主要包含两部分：</p>
+<ol>
+<li><p>teamcity-server：<br>:::tips<br>teamcity的服务端部分，提供管理和操作<br>:::</p>
+</li>
+<li><p>teamcity-agent：<br>:::tips<br>作用是在 CI/CD 流程中负责具体的构建、测试和部署任务。TeamCity 是一个分布式 CI/CD 系统，可以在多个 Agent 上并行执行构建任务，提高了构建和测试的效率</p>
+</li>
+<li><p>构建代码： TeamCity Agent 负责拉取源代码，并在本地环境中进行编译、构建、打包等操作，生成可执行文件、库文件或者其他构建产物。</p>
+</li>
+<li><p>运行测试： Agent 可以运行单元测试、集成测试等各种测试用例。它会执行预先配置好的测试任务，并将测试结果反馈给 TeamCity 服务器。</p>
+</li>
+<li><p>代码分析： TeamCity Agent 可以执行代码静态分析、代码质量检查等任务，帮助开发团队发现代码中的问题，提供代码质量报告。</p>
+</li>
+<li><p>部署应用程序： 在持续交付流程中，Agent 可以负责将构建好的应用程序部署到测试环境、预生产环境或生产环境中。这包括复制文件、设置配置、运行数据库迁移等操作。</p>
+</li>
+<li><p>执行自动化任务： TeamCity Agent 可以执行各种自动化任务，例如数据库迁移、静态文件生成、文档生成等，以便将应用程序部署到可运行状态。</p>
+</li>
+</ol>
+<p>TeamCity Agent 与 TeamCity 服务器进行通信，接收来自服务器的构建任务，执行任务，然后将结果报告给服务器。它可以运行在不同的操作系统上，并且支持多种编程语言和构建工具。通过分布式部署，TeamCity Agent 能够提供高度可扩展性，以适应不同规模的项目和团队需求。<br>:::</p>
+<p>如果是在本机安装则简单多了，直接解压运行即可：<br><a target="_blank" rel="noopener" href="https://www.yuque.com/shuangyu-rcged/network/bwosfkchn7pwdatg">https://www.yuque.com/shuangyu-rcged/network/bwosfkchn7pwdatg</a></p>
+<p>区别：<br>相较于docker安装，本机安装则更加简单，踩的坑很少，因为docker安装的话会缺少环境，导致go程序无法构建，要做很多步骤，这下面会说到<br>但折腾一番也不失为是件有意义的事情，折腾的过程其实就是学习新知识的过程</p>
+<h2 id="二、在teamcity-agent上安装go环境"><a href="#二、在teamcity-agent上安装go环境" class="headerlink" title="二、在teamcity-agent上安装go环境"></a>二、在teamcity-agent上安装go环境</h2><p>这对我来说应该不是第二步，因为我踩过坑，知道有这么个问题，所以提前放到这里了</p>
+<p>因为执行编译和构建的是teamcity-agent，所以只需要在agent上安装环境即可，安装方式就是进入docker容器的指令模式，进行安装：</p>
+<pre class="language-powershell" data-language="powershell"><code class="language-powershell">docker exec <span class="token operator">-</span>it <span class="token operator">-</span>u root <span class="token punctuation">&#123;</span>容器id<span class="token punctuation">&#125;</span> <span class="token operator">/</span>bin/bash</code></pre>
+<p>注意登录的时候使用root身份登录，因为会有权限问题</p>
+<p>然后就是正常的，在linux中安装go环境的步骤：</p>
+<pre class="language-powershell" data-language="powershell"><code class="language-powershell">cd <span class="token operator">/</span>usr/local
+wget https:<span class="token operator">/</span><span class="token operator">/</span>dl<span class="token punctuation">.</span>google<span class="token punctuation">.</span>com/go/go1<span class="token punctuation">.</span>20<span class="token punctuation">.</span>5<span class="token punctuation">.</span>linux-arm64<span class="token punctuation">.</span>tar<span class="token punctuation">.</span>gz
+tar <span class="token operator">-</span>xvf go1<span class="token punctuation">.</span>20<span class="token punctuation">.</span>5<span class="token punctuation">.</span>linux-arm64<span class="token punctuation">.</span>tar<span class="token punctuation">.</span>gz
+<span class="token function">rm</span> <span class="token operator">-</span>rf go1<span class="token punctuation">.</span>20<span class="token punctuation">.</span>5<span class="token punctuation">.</span>linux-arm64<span class="token punctuation">.</span>tar<span class="token punctuation">.</span>gz
+
+export GOROOT=<span class="token operator">/</span>usr/local/go
+export PATH=<span class="token variable">$PATH</span>:<span class="token variable">$GOROOT</span><span class="token operator">/</span>bin
+export GOPATH=<span class="token operator">/</span>home/goproject
+export GOPROXY=https:<span class="token operator">/</span><span class="token operator">/</span>goproxy<span class="token punctuation">.</span>cn
+export GO111MODULE=on
+
+go env</code></pre>
+<p>能打印出go的环境信息就说明安装成功了</p>
+<p>ok，本以为万事大吉，回到teamcity执行构建，发现还是报错：<strong>go not found</strong></p>
+<p>再次进入docker容器，执行 go env 发现环境没有生效，期间找了很多网上资料，什么在 /root/.bashrc 中设置环境变量，在 /etc/bash.bashrc 中设置环境变量，虽然最后重新进入或者重启容器的确都能打印出环境变量，但到了teamcity中构建的时候还是 <strong>go not found</strong></p>
+<p>着实费了一番功夫，其实要解决这个问题很简单，请看下面。</p>
+<h2 id="三、在teamcity中创建项目并添加构建步骤"><a href="#三、在teamcity中创建项目并添加构建步骤" class="headerlink" title="三、在teamcity中创建项目并添加构建步骤"></a>三、在teamcity中创建项目并添加构建步骤</h2><p>在左上角创建一个项目，然后进入设置</p>
+<h3 id="1、VCS设置"><a href="#1、VCS设置" class="headerlink" title="1、VCS设置"></a><strong>1、VCS设置</strong></h3><p>其实就是代码仓库，根据自己实际使用的平台设置即可，其它还有很多项目设置，因为是初步尝试，所以没有深入研究，就先不管了，这个就够用了<br><img src="https://cdn.nlark.com/yuque/0/2023/png/115159/1698979012994-5243269b-36be-4e27-9421-a555323f830e.png#averageHue=%23e4e3e2&clientId=u21b98660-fac4-4&from=paste&height=1405&id=u3f44f2db&originHeight=2810&originWidth=3736&originalType=binary&ratio=2&rotation=0&showTitle=false&size=1067209&status=done&style=none&taskId=u9f452eda-e2eb-482f-9503-00f1c307fba&title=&width=1868" alt="截屏2023-11-03 10.30.58.png"></p>
+<h3 id="2、构建步骤设置"><a href="#2、构建步骤设置" class="headerlink" title="2、构建步骤设置"></a><strong>2、构建步骤设置</strong></h3><p>这一步就是真正对构建部署的设置，也是最重要的设置，点击 Build 设置里面的 Build Steps 即可出现设置界面，下面是我已经设置好的界面，总共有4个步骤：<br><img src="https://cdn.nlark.com/yuque/0/2023/png/115159/1698979493321-1d5a3fca-7c2a-4e0a-a74e-67a319b6afa0.png#averageHue=%23fefefe&clientId=u21b98660-fac4-4&from=paste&height=704&id=uf3133242&originHeight=1408&originWidth=3140&originalType=binary&ratio=2&rotation=0&showTitle=false&size=454758&status=done&style=none&taskId=uc1773fba-a771-471f-b3d3-940e93b3a43&title=&width=1570" alt="截屏2023-11-03 10.44.42.png"></p>
+<p>构建流程规划：<br>这里没有打包成docker，走的还是最原始的编译运行的形式，其大致流程如下<br><img src="https://cdn.nlark.com/yuque/0/2023/png/115159/1698980102104-d00ddd6f-900b-4894-9e54-aa7a29caa8cf.png#averageHue=%23fcfaf9&clientId=u21b98660-fac4-4&from=paste&height=308&id=u61f89dc6&originHeight=616&originWidth=1990&originalType=binary&ratio=2&rotation=0&showTitle=false&size=86568&status=done&style=none&taskId=u41f5486e-4ac1-40ee-be3f-7944a84bb89&title=&width=995" alt="构建流程.png"></p>
+<p>然后看下我的测试项目结构：<br>dockerfile忽略，这次还没用到，主要的就是main.go、和start.sh这两个文件，前者是程序，后者是快速运行程序的脚本，注意开启go.mod，不然在agent中编译的时候还得自己手动下载包<br><img src="https://cdn.nlark.com/yuque/0/2023/png/115159/1698980359802-8725a461-7cd6-42f9-a9fd-b53b8ec6f9bf.png#averageHue=%23e5e5e5&clientId=u21b98660-fac4-4&from=paste&height=194&id=u88ffc68c&originHeight=388&originWidth=312&originalType=binary&ratio=2&rotation=0&showTitle=false&size=25954&status=done&style=none&taskId=u438755bc-5756-45f8-af8f-9f7c1709ebf&title=&width=156" alt="image.png"></p>
+<pre class="language-go" data-language="go"><code class="language-go"><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token string">"github.com/gin-gonic/gin"</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    router <span class="token operator">:=</span> gin<span class="token punctuation">.</span><span class="token function">Default</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    router<span class="token punctuation">.</span><span class="token function">GET</span><span class="token punctuation">(</span><span class="token string">"/test"</span><span class="token punctuation">,</span> <span class="token keyword">func</span><span class="token punctuation">(</span>c <span class="token operator">*</span>gin<span class="token punctuation">.</span>Context<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        c<span class="token punctuation">.</span><span class="token function">JSON</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">,</span> gin<span class="token punctuation">.</span>H<span class="token punctuation">&#123;</span>
+            <span class="token string">"message"</span><span class="token punctuation">:</span> <span class="token string">"Luckly Successful!"</span><span class="token punctuation">,</span>
+        <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+    err <span class="token operator">:=</span> router<span class="token punctuation">.</span><span class="token function">Run</span><span class="token punctuation">(</span><span class="token string">":7788"</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span>
+        <span class="token function">panic</span><span class="token punctuation">(</span><span class="token string">"Run services error"</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+</code></pre>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#!/bin/sh</span>
+
+<span class="token assign-left variable">current_date</span><span class="token operator">=</span><span class="token variable"><span class="token variable">`</span><span class="token function">date</span> +%Y-%m-%d<span class="token variable">`</span></span>
+<span class="token function">sudo</span> <span class="token function">kill</span> <span class="token parameter variable">-9</span> <span class="token variable"><span class="token variable">$(</span>pidof /Users/yuyuyu/tmp/test_go_teamcity/test_go_teamcity<span class="token variable">)</span></span>
+<span class="token function">sudo</span> <span class="token function">nohup</span> /Users/yuyuyu/tmp/test_go_teamcity/test_go_teamcity  <span class="token operator">></span> /Users/yuyuyu/tmp/test_go_teamcity/test_go_teamcity-<span class="token variable">$&#123;current_date&#125;</span>.log  <span class="token operator"><span class="token file-descriptor important">2</span>></span><span class="token file-descriptor important">&amp;1</span> <span class="token operator">&amp;</span></code></pre>
+
+<p>再回到构建步骤，一步步分析：</p>
+<h4 id="2-1-编译"><a href="#2-1-编译" class="headerlink" title="2.1 编译"></a>2.1 编译</h4><p><img src="https://cdn.nlark.com/yuque/0/2023/png/115159/1698980927698-03614570-f629-4f4a-af6f-f4eb5a185c50.png#averageHue=%23fefefe&clientId=u21b98660-fac4-4&from=paste&height=927&id=ua1e5107e&originHeight=1854&originWidth=3240&originalType=binary&ratio=2&rotation=0&showTitle=false&size=485550&status=done&style=none&taskId=u9439dc19-a5c2-4569-bfb0-b227bbbc06d&title=&width=1620" alt="image.png"></p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">export</span> <span class="token assign-left variable">GOROOT</span><span class="token operator">=</span>/usr/local/go
+<span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token environment constant">$PATH</span><span class="token builtin class-name">:</span><span class="token variable">$GOROOT</span>/bin
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">GOPATH</span><span class="token operator">=</span>/home/goproject
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">GOPROXY</span><span class="token operator">=</span>https://goproxy.cn
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">GO111MODULE</span><span class="token operator">=</span>on
+
+<span class="token function">rm</span> <span class="token parameter variable">-rf</span> .git
+<span class="token function">rm</span> <span class="token parameter variable">-rf</span> .gitignore
+<span class="token function">rm</span> <span class="token parameter variable">-rf</span> README.md
+
+go mod tidy
+<span class="token assign-left variable">GOOS</span><span class="token operator">=</span>darwin <span class="token assign-left variable">GOARCH</span><span class="token operator">=</span>arm64 go build <span class="token parameter variable">-a</span> <span class="token parameter variable">-o</span> test_go_teamcity main.go</code></pre>
+
+<p>上面不是说在agent中装好go环境后，怎么构建都报 go not found 的错误吗，这里只要每次构建的时候加上设置环境变量的指令就行了<br>agent会将代码仓库的代码拉取到它本地，<code>/opt/buildagent/work</code> 中的某个项目目录，然后执行 go build 编译就行了<br>这里我加了交叉编译，因为远程服务器设置的是我自己的电脑，要在mac上执行，不加的话是运行不了的</p>
+<h4 id="2-2-打包"><a href="#2-2-打包" class="headerlink" title="2.2 打包"></a>2.2 打包</h4><p>构建类型跟上一步一样，也选择 ‘Command Line’类型，执行指令如下：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">tar</span> <span class="token parameter variable">-cvf</span> test_go_teamcity.tar.gz start.sh test_go_teamcity</code></pre>
+<p>最终编译好之后我们需要的只有执行程序test_go_teamcity和start.sh，将这两个文件打包就行了</p>
+<h4 id="2-3-上传"><a href="#2-3-上传" class="headerlink" title="2.3 上传"></a>2.3 上传</h4><p><img src="https://cdn.nlark.com/yuque/0/2023/png/115159/1698981742298-7f3c4ec6-fbbe-43e0-a8ad-546edd4aab02.png#averageHue=%23e6c57e&clientId=u21b98660-fac4-4&from=paste&height=909&id=u211d023f&originHeight=1818&originWidth=3022&originalType=binary&ratio=2&rotation=0&showTitle=false&size=429014&status=done&style=none&taskId=uea42cf5a-2ab3-452f-9b7d-1a7b4d9aadc&title=&width=1511" alt="image.png"><br>将打包好的压缩包上传到远程服务器，就是线上环境，这里测试我用的是自己的电脑，其中<br><strong>Target</strong>：格式是 [服务器ip:上传文件放置的位置]，是服务器的地址<br><strong>Paths to sources</strong>：源文件的位置，%system.teamcity.build.workingDir% 就是这个项目工作目录，最终就是 /opt/buildagent/work/aebbfdbb93b9d7dc/test_go_teamcity.tar.gz<br>用户名密码就是远程服务器的用户名密码</p>
+<h4 id="2-4-运行"><a href="#2-4-运行" class="headerlink" title="2.4 运行"></a>2.4 运行</h4><p><img src="https://cdn.nlark.com/yuque/0/2023/png/115159/1698982120900-c5bec2a9-1135-4446-8aac-5f53c0f8f494.png#averageHue=%23e5c47e&clientId=u21b98660-fac4-4&from=paste&height=763&id=u57dc4e20&originHeight=1526&originWidth=2656&originalType=binary&ratio=2&rotation=0&showTitle=false&size=328331&status=done&style=none&taskId=u93ed0818-19c9-426c-92d8-7b0a019f80f&title=&width=1328" alt="image.png"></p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> /Users/jyj/tmp/test_go_teamcity
+<span class="token function">sudo</span> <span class="token function">tar</span> <span class="token parameter variable">-zxvf</span> test_go_teamcity.tar.gz
+<span class="token function">sudo</span> <span class="token function">rm</span> <span class="token parameter variable">-rf</span> test_go_teamcity.tar.gz
+
+<span class="token function">sudo</span> <span class="token function">chmod</span> +x test_go_teamcity
+<span class="token function">sudo</span> <span class="token function">chmod</span> +x start.sh
+<span class="token function">sudo</span> ./start.sh</code></pre>
+<p>在远程服务器上执行的命令，也就是解压缩刚才传过来的包，然后运行程序即可，注意权限问题</p>
+<h2 id="四、结束"><a href="#四、结束" class="headerlink" title="四、结束"></a>四、结束</h2><p>最后在浏览器输入 <a target="_blank" rel="noopener" href="http://localhost:7788/">http://localhost:7788</a><br>看一下运行成功了没</p>
+<p>teamcity初尝试就到此为止了，总体用下来操作还是很简单的，界面也美观，跟jenkins比各有优劣，还有很多功能后续慢慢再试验</p>
+<p><strong>如果想要以先编译再上传运行的方式部署Go程序的话，可以把go环境安装好的teamcity-agent容器打包成镜像，上传到自己的仓库，方便下次使用</strong></p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">JIANG XIAOFAN</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://shuangdeyu.github.io/2023/12/06/teamcity-zi-dong-bu-shu-go-xiang-mu-chu-chang-shi/">https://shuangdeyu.github.io/2023/12/06/teamcity-zi-dong-bu-shu-go-xiang-mu-chu-chang-shi/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">JIANG XIAOFAN</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/Go/">
+                                    <span class="chip bg-color">Go</span>
+                                </a>
+                            
+                                <a href="/tags/CI-CD/">
+                                    <span class="chip bg-color">CI/CD</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments textarea {
+        box-sizing: border-box;
+        background: url("/medias/comment_bg4.jpeg") 100% 100% no-repeat;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #4cbf30;
+        font-weight: 500;
+        text-decoration: none;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="vcomments" class="card-content" style="display: grid">
+    </div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'Cu0yGDQXYEoC2BMFqoMyqSK1-gzGzoHsz',
+        appKey: 'PYfyCYN5lI59X5Rczd5IGls5',
+        notify: 'false' === 'true',
+        verify: 'true' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '20',
+        lang: 'zh-cn',
+        placeholder: 'hi，留个脚印吧'
+    });
+</script>
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2023/12/07/ru-he-zai-mac-shang-an-zhuang-oracle/">
+                    <div class="card-image">
+                        
+                        <img src="/gallery/oracle.jpg" class="responsive-img" alt="如何在Mac上安装oracle">
+                        
+                        <span class="card-title">如何在Mac上安装oracle</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-12-07
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%8A%80%E6%9C%AF/" class="post-category">
+                                    技术
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/database/">
+                        <span class="chip bg-color">database</span>
+                    </a>
+                    
+                    <a href="/tags/mac/">
+                        <span class="chip bg-color">mac</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/01/26/mysql-kai-fa-gui-fan/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="mysql开发规范">
+                        
+                        <span class="card-title">mysql开发规范</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-01-26
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%8A%80%E6%9C%AF/" class="post-category">
+                                    技术
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Mysql/">
+                        <span class="chip bg-color">Mysql</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="113118807"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2024</span>
+            
+            <span id="year">2019</span>
+            <a href="/about" target="_blank">JIANG XIAOFAN</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">107k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
