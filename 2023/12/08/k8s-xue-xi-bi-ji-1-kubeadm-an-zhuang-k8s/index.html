@@ -1,0 +1,1608 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="k8s学习笔记(1)—kubeadm安装k8s, 双的鱼 双的鱼博客 hexo博客 个人博客">
+    <meta name="description" content="双的鱼博客，记录我的学习和感想">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>k8s学习笔记(1)—kubeadm安装k8s | 双的鱼博客</title>
+    <link rel="icon" type="image/png" href="/images/logo.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="双的鱼博客" type="application/atom+xml">
+</head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/images/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">双的鱼博客</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/weibo" class="waves-effect waves-light">
+      
+      <i class="fa fa-comment" style="zoom: 0.6;"></i>
+      
+      <span>微博</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/album" class="waves-effect waves-light">
+      
+      <i class="fa fa-camera-retro" style="zoom: 0.6;"></i>
+      
+      <span>相册</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/images/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">双的鱼博客</div>
+        <div class="logo-desc">
+            
+            双的鱼博客，记录我的学习和感想
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/weibo" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fa fa-comment"></i>
+			
+			微博
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/album" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fa fa-camera-retro"></i>
+			
+			相册
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/gallery/k8s-1.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">k8s学习笔记(1)—kubeadm安装k8s</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+        height: auto;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+        max-height: calc(100vh - 10rem);
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+        overflow: auto;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/docker/">
+                                <span class="chip bg-color">docker</span>
+                            </a>
+                        
+                            <a href="/tags/k8s/">
+                                <span class="chip bg-color">k8s</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E6%8A%80%E6%9C%AF/" class="post-category">
+                                技术
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2023-12-08
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    2.7k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    12 分
+                </div>
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>k8s万里长征的第一步</p>
+<h2 id="一、前置步骤"><a href="#一、前置步骤" class="headerlink" title="一、前置步骤"></a>一、前置步骤</h2><blockquote>
+<p>服务器规划</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th><strong>节点名称</strong></th>
+<th><strong>IP</strong></th>
+<th>配置</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>k8s-master1</td>
+<td>192.168.2.124</td>
+<td>centos7，4G，2CPU</td>
+</tr>
+<tr>
+<td>k8s-node1</td>
+<td>192.168.2.105</td>
+<td>centos7，2G，2CPU</td>
+</tr>
+<tr>
+<td>k8s-node2</td>
+<td>192.168.2.106</td>
+<td>centos7，2G，2CPU</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>关闭系统防火墙</p>
+</blockquote>
+<pre class="language-powershell" data-language="powershell"><code class="language-powershell">systemctl stop firewalld
+systemctl disable firewalld</code></pre>
+<blockquote>
+<p>关闭selinux</p>
+</blockquote>
+<pre class="language-powershell" data-language="powershell"><code class="language-powershell">sed <span class="token operator">-</span>i <span class="token string">'s/enforcing/disabled/'</span> <span class="token operator">/</span>etc/selinux/config  <span class="token comment">#永久</span>
+setenforce 0  <span class="token comment"># 临时 </span></code></pre>
+<blockquote>
+<p>关闭swap</p>
+</blockquote>
+<pre class="language-powershell" data-language="powershell"><code class="language-powershell">swapoff <span class="token operator">-</span>a   <span class="token comment">#临时</span>
+sed <span class="token operator">-</span><span class="token function">ri</span> <span class="token string">'s/.*swap.*/#&amp;/'</span> <span class="token operator">/</span>etc/fstab  <span class="token comment">#永久</span></code></pre>
+<blockquote>
+<p>根据规划设置主机名</p>
+</blockquote>
+<pre class="language-powershell" data-language="powershell"><code class="language-powershell">hostnamectl <span class="token function">set-hostname</span> k8s-master1
+hostnamectl <span class="token function">set-hostname</span> k8s-node1
+hostnamectl <span class="token function">set-hostname</span> k8s-node2</code></pre>
+<blockquote>
+<p>添加hosts</p>
+</blockquote>
+<pre class="language-powershell" data-language="powershell"><code class="language-powershell"><span class="token function">cat</span> >> <span class="token operator">/</span>etc/hosts &lt;&lt; EOF
+192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>2<span class="token punctuation">.</span>124 k8s-master1
+192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>2<span class="token punctuation">.</span>105 k8s-node1
+192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>2<span class="token punctuation">.</span>116 k8s-node2
+EOF</code></pre>
+<blockquote>
+<p>时间同步</p>
+</blockquote>
+<pre class="language-powershell" data-language="powershell"><code class="language-powershell">yum install chrony <span class="token operator">-</span>y
+systemctl <span class="token function">start</span> chronyd
+systemctl enable chronyd
+chronyc sources</code></pre>
+<blockquote>
+<p>配置ssh互信</p>
+</blockquote>
+<pre class="language-powershell" data-language="powershell"><code class="language-powershell"><span class="token comment"># 直接一直回车就行</span>
+ssh-keygen
+
+ssh-<span class="token function">copy-id</span> <span class="token operator">-</span>i ~<span class="token operator">/</span><span class="token punctuation">.</span>ssh/id_rsa<span class="token punctuation">.</span>pub root@k8s-master1
+ssh-<span class="token function">copy-id</span> <span class="token operator">-</span>i ~<span class="token operator">/</span><span class="token punctuation">.</span>ssh/id_rsa<span class="token punctuation">.</span>pub root@k8s-node1
+ssh-<span class="token function">copy-id</span> <span class="token operator">-</span>i ~<span class="token operator">/</span><span class="token punctuation">.</span>ssh/id_rsa<span class="token punctuation">.</span>pub root@k8s-node2</code></pre>
+<blockquote>
+<p>更换yum源</p>
+</blockquote>
+<pre class="language-powershell" data-language="powershell"><code class="language-powershell"><span class="token function">mv</span> <span class="token operator">/</span>etc/yum<span class="token punctuation">.</span>repos<span class="token punctuation">.</span>d/CentOS-Base<span class="token punctuation">.</span>repo <span class="token operator">/</span>etc/yum<span class="token punctuation">.</span>repos<span class="token punctuation">.</span>d/CentOS-Base<span class="token punctuation">.</span>repo<span class="token punctuation">.</span>backup
+wget <span class="token operator">-</span>O Centos-Base<span class="token punctuation">.</span>repo http:<span class="token operator">/</span><span class="token operator">/</span>mirrors<span class="token punctuation">.</span>aliyun<span class="token punctuation">.</span>com/repo/Centos-7<span class="token punctuation">.</span>repo
+yum clean all
+yum makecache
+yum <span class="token operator">-</span>y install update</code></pre>
+<blockquote>
+<p>允许 iptables 检查桥接流量</p>
+</blockquote>
+<p>允许 iptables 检查桥接流量（可选，所有节点） 若要显式加载此模块，请运行 sudo modprobe br_netfilter，通过运行 lsmod | grep br_netfilter 来验证 br_netfilter 模块是否已加载</p>
+<pre class="language-powershell" data-language="powershell"><code class="language-powershell">sudo modprobe br_netfilter
+lsmod <span class="token punctuation">|</span> grep br_netfilter</code></pre>
+<p>为了让你的 Linux 节点上的 iptables 能够正确地查看桥接流量，你需要确保在你的 sysctl 配置中将 net.bridge.bridge-nf-call-iptables 设置为 1。例如：</p>
+<pre class="language-powershell" data-language="powershell"><code class="language-powershell"><span class="token function">cat</span> &lt;&lt;EOF <span class="token punctuation">|</span> sudo <span class="token function">tee</span> <span class="token operator">/</span>etc/modules-load<span class="token punctuation">.</span>d/k8s<span class="token punctuation">.</span>conf
+br_netfilter
+EOF
+
+<span class="token function">cat</span> &lt;&lt;EOF <span class="token punctuation">|</span> sudo <span class="token function">tee</span> <span class="token operator">/</span>etc/sysctl<span class="token punctuation">.</span>d/k8s<span class="token punctuation">.</span>conf
+net<span class="token punctuation">.</span>bridge<span class="token punctuation">.</span>bridge-nf-call-ip6tables = 1
+net<span class="token punctuation">.</span>bridge<span class="token punctuation">.</span>bridge-nf-call-iptables = 1
+EOF
+
+sudo sysctl <span class="token operator">--</span>system</code></pre>
+<blockquote>
+<p>升级内核</p>
+</blockquote>
+<p>3.10内核在大规模集群具有不稳定性,所以需要升级内核 。(所有机器都要升级到一样)</p>
+<pre class="language-powershell" data-language="powershell"><code class="language-powershell"><span class="token comment">#查看内核版本</span>
+$ uname <span class="token operator">-</span>sr 
+ 
+<span class="token comment">#系统更新</span>
+$ yum update
+ 
+<span class="token comment">#载入公钥</span>
+$ rpm <span class="token operator">--</span>import https:<span class="token operator">/</span><span class="token operator">/</span>www<span class="token punctuation">.</span>elrepo<span class="token punctuation">.</span>org/RPM-GPG-KEY-elrepo<span class="token punctuation">.</span>org
+ 
+<span class="token comment">#安装 ELRepo 最新版本</span>
+$ yum install <span class="token operator">-</span>y https:<span class="token operator">/</span><span class="token operator">/</span>www<span class="token punctuation">.</span>elrepo<span class="token punctuation">.</span>org/elrepo-release-7<span class="token punctuation">.</span>el7<span class="token punctuation">.</span>elrepo<span class="token punctuation">.</span>noarch<span class="token punctuation">.</span>rpm
+ 
+<span class="token comment">#列出可以使用的 kernel 包版本</span>
+$ yum list available <span class="token operator">--</span>disablerepo=<span class="token operator">*</span> <span class="token operator">--</span>enablerepo=elrepo-kernel 
+ 
+<span class="token comment">#安装指定的 kernel 版本：(已查看版本为准,采用lt长期支持版本)</span>
+$ yum install <span class="token operator">-</span>y kernel-lt-5<span class="token punctuation">.</span>4<span class="token punctuation">.</span>251-1<span class="token punctuation">.</span>el7<span class="token punctuation">.</span>elrepo <span class="token operator">--</span>enablerepo=elrepo-kernel
+ 
+<span class="token comment">#查看系统可用内核</span>
+$ <span class="token function">cat</span> <span class="token operator">/</span>boot/grub2/grub<span class="token punctuation">.</span>cfg <span class="token punctuation">|</span> grep menuentry
+ 
+<span class="token comment">#设置开机从新内核启动</span>
+$ grub2-<span class="token function">set-default</span> <span class="token string">"CentOS Linux (5.4.251-1.el7.elrepo.x86_64) 7 (Core)"</span>
+ 
+<span class="token comment">#查看内核启动项</span>
+$ grub2-editenv list
+saved_entry=CentOS Linux <span class="token punctuation">(</span>5<span class="token punctuation">.</span>4<span class="token punctuation">.</span>251-1<span class="token punctuation">.</span>el7<span class="token punctuation">.</span>elrepo<span class="token punctuation">.</span>x86_64<span class="token punctuation">)</span> 7 <span class="token punctuation">(</span>Core<span class="token punctuation">)</span>
+ 
+<span class="token comment">#重启系统使内核生效：</span>
+$ reboot
+ 
+<span class="token comment">#启动完成查看内核版本是否更新：</span>
+$ uname <span class="token operator">-</span>r
+5<span class="token punctuation">.</span>4<span class="token punctuation">.</span>188-1<span class="token punctuation">.</span>el7<span class="token punctuation">.</span>elrepo<span class="token punctuation">.</span>x86_64</code></pre>
+
+<h2 id="二、安装docker"><a href="#二、安装docker" class="headerlink" title="二、安装docker"></a>二、安装docker</h2><pre class="language-powershell" data-language="powershell"><code class="language-powershell"><span class="token comment"># 安装yum-config-manager配置工具</span>
+yum <span class="token operator">-</span>y install yum-utils
+<span class="token comment"># 设置yum源</span>
+yum-config-manager <span class="token operator">--</span><span class="token function">add-repo</span> http:<span class="token operator">/</span><span class="token operator">/</span>mirrors<span class="token punctuation">.</span>aliyun<span class="token punctuation">.</span>com/docker-ce/linux/centos/docker-ce<span class="token punctuation">.</span>repo
+<span class="token comment"># 安装docker-ce版本</span>
+yum install <span class="token operator">-</span>y docker-ce
+<span class="token comment"># 启动</span>
+systemctl <span class="token function">start</span> docker
+<span class="token comment"># 开机自启</span>
+systemctl enable docker
+<span class="token comment"># 查看版本号</span>
+docker <span class="token operator">--</span>version
+<span class="token comment"># 查看版本具体信息</span>
+docker version
+
+<span class="token comment"># Docker镜像源设置</span>
+<span class="token comment"># 修改文件 /etc/docker/daemon.json，没有这个文件就创建</span>
+<span class="token comment"># 添加以下内容后，重启docker服务：</span>
+<span class="token function">cat</span> ><span class="token operator">/</span>etc/docker/daemon<span class="token punctuation">.</span>json&lt;&lt;EOF
+<span class="token punctuation">&#123;</span>
+   <span class="token string">"registry-mirrors"</span>: <span class="token punctuation">[</span>
+    <span class="token string">"https://docker.mirrors.ustc.edu.cn"</span><span class="token punctuation">,</span>
+    <span class="token string">"https://registry.docker-cn.com"</span><span class="token punctuation">,</span>
+    <span class="token string">"https://5tdtrypx.mirror.aliyuncs.com"</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">&#125;</span>
+EOF
+<span class="token comment"># 加载</span>
+systemctl reload docker
+
+<span class="token comment"># 查看</span>
+systemctl status docker containerd</code></pre>
+
+<h2 id="三、配置-k8s-yum-源（所有节点）"><a href="#三、配置-k8s-yum-源（所有节点）" class="headerlink" title="三、配置 k8s yum 源（所有节点）"></a>三、配置 k8s yum 源（所有节点）</h2><pre class="language-none"><code class="language-none">cat &lt;&lt;EOF &gt; &#x2F;etc&#x2F;yum.repos.d&#x2F;kubernetes.repo
+[kubernetes]
+name&#x3D;Kubernetes
+baseurl&#x3D;https:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;kubernetes&#x2F;yum&#x2F;repos&#x2F;kubernetes-el7-x86_64&#x2F;
+enabled&#x3D;1
+gpgcheck&#x3D;0
+repo_gpgcheck&#x3D;0
+gpgkey&#x3D;https:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;kubernetes&#x2F;yum&#x2F;doc&#x2F;yum-key.gpg https:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;kubernetes&#x2F;yum&#x2F;doc&#x2F;rpm-package-key.gpg
+EOF</code></pre>
+
+<h2 id="四、将-sandbox-image-镜像源设置为阿里云-google-containers-镜像源（所有节点）"><a href="#四、将-sandbox-image-镜像源设置为阿里云-google-containers-镜像源（所有节点）" class="headerlink" title="四、将 sandbox_image 镜像源设置为阿里云 google_containers 镜像源（所有节点）"></a>四、将 sandbox_image 镜像源设置为阿里云 google_containers 镜像源（所有节点）</h2><pre class="language-none"><code class="language-none"># 导出默认配置，config.toml这个文件默认是不存在的
+containerd config default &gt; &#x2F;etc&#x2F;containerd&#x2F;config.toml
+grep sandbox_image  &#x2F;etc&#x2F;containerd&#x2F;config.toml
+sed -i &quot;s#k8s.gcr.io&#x2F;pause#registry.aliyuncs.com&#x2F;google_containers&#x2F;pause#g&quot;       &#x2F;etc&#x2F;containerd&#x2F;config.toml
+grep sandbox_image  &#x2F;etc&#x2F;containerd&#x2F;config.toml</code></pre>
+
+<h2 id="五、配置-containerd-cgroup-驱动程序-systemd（所有节点）"><a href="#五、配置-containerd-cgroup-驱动程序-systemd（所有节点）" class="headerlink" title="五、配置 containerd cgroup 驱动程序 systemd（所有节点）"></a>五、配置 containerd cgroup 驱动程序 systemd（所有节点）</h2><p>kubernets 自ｖ 1.24.0 后，就不再使用 docker.shim，替换采用 containerd 作为容器运行时端点。因此需要安装 containerd（在 docker 的基础下安装），上面安装 docker 的时候就自动安装了 containerd 了。这里的 docker 只是作为客户端而已。容器引擎还是 containerd。</p>
+<pre class="language-none"><code class="language-none">sed -i &#39;s#SystemdCgroup &#x3D; false#SystemdCgroup &#x3D; true#g&#39; &#x2F;etc&#x2F;containerd&#x2F;config.toml
+# 应用所有更改后,重新启动containerd
+systemctl restart containerd</code></pre>
+
+<h2 id="六、开始安装-kubeadm，kubelet-和-kubectl（所有节点）"><a href="#六、开始安装-kubeadm，kubelet-和-kubectl（所有节点）" class="headerlink" title="六、开始安装 kubeadm，kubelet 和 kubectl（所有节点）"></a>六、开始安装 kubeadm，kubelet 和 kubectl（所有节点）</h2><pre class="language-powershell" data-language="powershell"><code class="language-powershell"><span class="token comment"># 不指定版本就是最新版本</span>
+yum install <span class="token operator">-</span>y kubelet-1<span class="token punctuation">.</span>19<span class="token punctuation">.</span>5 kubeadm-1<span class="token punctuation">.</span>19<span class="token punctuation">.</span>5 kubectl-1<span class="token punctuation">.</span>19<span class="token punctuation">.</span>5
+<span class="token comment"># 设置为开机自启并现在立刻启动服务 --now：立刻启动服务</span>
+systemctl enable <span class="token operator">--</span>now kubelet
+
+<span class="token comment"># 查看状态，这里需要等待一段时间再查看服务状态，启动会有点慢</span>
+systemctl status kubelet</code></pre>
+<blockquote>
+<p> journalctl -xefu kubelet 查看日志，发现有报错，报错如下：<br>kubelet.service: Main process exited, code=exited, status=1/FAILURE kubelet.service: Failed with result ‘exit-code’.</p>
+</blockquote>
+<blockquote>
+<p>【解释】重新安装（或第一次安装）k8s，未经过 kubeadm init 或者 kubeadm join 后，kubelet 会不断重启，这个是正常现象……，执行 init 或 join 后问题会自动解决，对此官网有如下描述，也就是此时不用理会 kubelet.service。</p>
+</blockquote>
+<p>于是，先进行下面的kubeadm init后再来启动。<br>采用1.19.5版本，其它高版本的报错报错太多，安装失败</p>
+<h2 id="七、使用-kubeadm-初始化集群（master-节点）"><a href="#七、使用-kubeadm-初始化集群（master-节点）" class="headerlink" title="七、使用 kubeadm 初始化集群（master 节点）"></a>七、使用 kubeadm 初始化集群（master 节点）</h2><pre class="language-none"><code class="language-none">kubeadm init \
+  --apiserver-advertise-address&#x3D;192.168.2.124 \
+  --image-repository registry.aliyuncs.com&#x2F;google_containers \
+  --control-plane-endpoint&#x3D;cluster-endpoint \
+  --kubernetes-version v1.19.5 \
+  --service-cidr&#x3D;10.1.0.0&#x2F;16 \
+  --pod-network-cidr&#x3D;10.244.0.0&#x2F;16
+# –image-repository string：    这个用于指定从什么位置来拉取镜像（1.13版本才有的），默认值是k8s.gcr.io，我们将其指定为国内镜像地址：registry.aliyuncs.com&#x2F;google_containers
+# –kubernetes-version string：  指定kubenets版本号，默认值是stable-1，会导致从https:&#x2F;&#x2F;dl.k8s.io&#x2F;release&#x2F;stable-1.txt下载最新的版本号，我们可以将其指定为固定版本（v1.22.1）来跳过网络请求。
+# –apiserver-advertise-address  指明用 Master 的哪个 interface 与 Cluster 的其他节点通信。如果 Master 有多个 interface，建议明确指定，如果不指定，kubeadm 会自动选择有默认网关的 interface。这里的ip为master节点ip，记得更换。
+# –pod-network-cidr             指定 Pod 网络的范围。Kubernetes 支持多种网络方案，而且不同网络方案对  –pod-network-cidr有自己的要求，这里设置为10.244.0.0&#x2F;16 是因为我们将使用 flannel 网络方案，必须设置成这个 CIDR。
+# --control-plane-endpoint     cluster-endpoint 是映射到该 IP 的自定义 DNS 名称，这里配置hosts映射：192.168.0.113   cluster-endpoint。 这将允许你将 --control-plane-endpoint&#x3D;cluster-endpoint 传递给 kubeadm init，并将相同的 DNS 名称传递给 kubeadm join。 稍后你可以修改 cluster-endpoint 以指向高可用性方案中的负载均衡器的地址。</code></pre>
+<p>首次初始化的时候会失败，因为之前的 kubelet 没有运行，但这次初始化之后则运行了，于是：</p>
+<blockquote>
+<p>重置再初始化</p>
+</blockquote>
+<pre class="language-none"><code class="language-none">kubeadm reset
+rm -fr ~&#x2F;.kube&#x2F;  &#x2F;etc&#x2F;kubernetes&#x2F;* var&#x2F;lib&#x2F;etcd&#x2F;*
+kubeadm init \
+  --apiserver-advertise-address&#x3D;192.168.2.124 \
+  --image-repository&#x3D;registry.aliyuncs.com&#x2F;google_containers \
+  --control-plane-endpoint&#x3D;cluster-endpoint \
+  --kubernetes-version v1.19.5 \
+  --service-cidr&#x3D;10.1.0.0&#x2F;16 \
+  --pod-network-cidr&#x3D;10.244.0.0&#x2F;16
+# –image-repository string：    这个用于指定从什么位置来拉取镜像（1.13版本才有的），默认值是k8s.gcr.io，我们将其指定为国内镜像地址：registry.aliyuncs.com&#x2F;google_containers
+# –kubernetes-version string：  指定kubenets版本号，默认值是stable-1，会导致从https:&#x2F;&#x2F;dl.k8s.io&#x2F;release&#x2F;stable-1.txt下载最新的版本号，我们可以将其指定为固定版本（v1.22.1）来跳过网络请求。
+# –apiserver-advertise-address  指明用 Master 的哪个 interface 与 Cluster 的其他节点通信。如果 Master 有多个 interface，建议明确指定，如果不指定，kubeadm 会自动选择有默认网关的 interface。这里的ip为master节点ip，记得更换。
+# –pod-network-cidr             指定 Pod 网络的范围。Kubernetes 支持多种网络方案，而且不同网络方案对  –pod-network-cidr有自己的要求，这里设置为10.244.0.0&#x2F;16 是因为我们将使用 flannel 网络方案，必须设置成这个 CIDR。
+# --control-plane-endpoint     cluster-endpoint 是映射到该 IP 的自定义 DNS 名称，这里配置hosts映射：192.168.0.113   cluster-endpoint。 这将允许你将 --control-plane-endpoint&#x3D;cluster-endpoint 传递给 kubeadm init，并将相同的 DNS 名称传递给 kubeadm join。 稍后你可以修改 cluster-endpoint 以指向高可用性方案中的负载均衡器的地址。</code></pre>
+
+<p>按提示执行下面的指令</p>
+<pre class="language-powershell" data-language="powershell"><code class="language-powershell">mkdir <span class="token operator">-</span>p <span class="token variable">$HOME</span><span class="token operator">/</span><span class="token punctuation">.</span>kube
+sudo <span class="token function">cp</span> <span class="token operator">-</span>i <span class="token operator">/</span>etc/kubernetes/admin<span class="token punctuation">.</span>conf <span class="token variable">$HOME</span><span class="token operator">/</span><span class="token punctuation">.</span>kube/config
+sudo chown $<span class="token punctuation">(</span>id <span class="token operator">-</span>u<span class="token punctuation">)</span>:$<span class="token punctuation">(</span>id <span class="token operator">-</span>g<span class="token punctuation">)</span> <span class="token variable">$HOME</span><span class="token operator">/</span><span class="token punctuation">.</span>kube/config</code></pre>
+<p>记住提示中node节点加入集群的命令，格式如下</p>
+<pre class="language-powershell" data-language="powershell"><code class="language-powershell">kubeadm join 192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>2<span class="token punctuation">.</span>116:6443 <span class="token operator">--</span>token bx6dlx<span class="token punctuation">.</span>30zedu4gg6co3vsp     <span class="token operator">--</span>discovery-token-ca-cert-hash sha256:0736b1babd378116c2e436a73815b1013b20c58f3277b72f0a5f6e0ad2fdac5a</code></pre>
+<p>如忘了可以这样获取</p>
+<pre class="language-powershell" data-language="powershell"><code class="language-powershell">kubeadm token create <span class="token operator">--</span>print-<span class="token function">join-command</span></code></pre>
+
+<p>查看节点状态，为noready，需要安装网络插件</p>
+<pre class="language-powershell" data-language="powershell"><code class="language-powershell">kubectl get nodes</code></pre>
+<p>安装网络插件flannel，官网在github <a target="_blank" rel="noopener" href="https://github.com/flannel-io/flannel">https://github.com/flannel-io/flannel</a>上<br>等待一段时间，直到所有的flannel容器都运行起来</p>
+<pre class="language-powershell" data-language="powershell"><code class="language-powershell">kubectl apply <span class="token operator">-</span>f https:<span class="token operator">/</span><span class="token operator">/</span>raw<span class="token punctuation">.</span>githubusercontent<span class="token punctuation">.</span>com/flannel-io/flannel/master/Documentation/kube-flannel<span class="token punctuation">.</span>yml</code></pre>
+
+<h2 id="八、初始化node节点"><a href="#八、初始化node节点" class="headerlink" title="八、初始化node节点"></a>八、初始化node节点</h2><p>执行kubeadm join<br>kubeadm join 192.168.2.10:6443 ……（见上方master记录的kubeadm join指令）</p>
+<p>在master节点上查看状态</p>
+<pre class="language-powershell" data-language="powershell"><code class="language-powershell">kubectl get nodes</code></pre>
+
+<h2 id="九、测试kubernetes集群"><a href="#九、测试kubernetes集群" class="headerlink" title="九、测试kubernetes集群"></a>九、测试kubernetes集群</h2><p>在Kubernetes集群中创建一个pod，验证是否正常运行：</p>
+<p>创建nginx容器</p>
+<pre class="language-powershell" data-language="powershell"><code class="language-powershell">kubectl create deployment nginx <span class="token operator">--</span>image=nginx</code></pre>
+<p>暴露对外端口</p>
+<pre class="language-powershell" data-language="powershell"><code class="language-powershell">kubectl expose deployment nginx <span class="token operator">--</span>port=80 <span class="token operator">--</span><span class="token function">type</span>=NodePort</code></pre>
+<p>查看nginx是否运行成功</p>
+<pre class="language-powershell" data-language="powershell"><code class="language-powershell">kubectl get pod<span class="token punctuation">,</span>svc</code></pre>
+<p>在浏览器访问。三个结点都可访问，说明集群已经搭建完成，</p>
+<h2 id="十、k8s-管理平台-dashboard-环境部署"><a href="#十、k8s-管理平台-dashboard-环境部署" class="headerlink" title="十、k8s 管理平台 dashboard 环境部署"></a>十、k8s 管理平台 dashboard 环境部署</h2><p>GitHub 地址：<a href="https://link.zhihu.com/?target=https://github.com/kubernetes/dashboard">https://github.com/kubernetes/dashboard</a></p>
+<pre class="language-none"><code class="language-none">kubectl apply -f https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;kubernetes&#x2F;dashboard&#x2F;v2.6.0&#x2F;aio&#x2F;deploy&#x2F;recommended.yaml
+kubectl get pods -n kubernetes-dashboard</code></pre>
+<p>但是这个只能内部访问，所以要外部访问，要么部署 ingress，要么就是设置 service NodePort 类型。这里选择 service 暴露端口。</p>
+<pre class="language-none"><code class="language-none">wget https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;kubernetes&#x2F;dashboard&#x2F;v2.6.0&#x2F;aio&#x2F;deploy&#x2F;recommended.yaml</code></pre>
+<p>修改后的内容如下：<br><img src="https://cdn.nlark.com/yuque/0/2023/png/115159/1691389489581-3b2d8691-eac8-4397-805b-a27365ed8886.png#averageHue=%23fbf7f6&clientId=ubdd2ab98-f809-4&from=paste&height=365&id=u5508d8b8&originHeight=303&originWidth=593&originalType=binary&ratio=2&rotation=0&showTitle=false&size=24766&status=done&style=none&taskId=u3e865fb6-dc3c-4a6c-a6f4-f4a99a12818&title=&width=714.5" alt="image.png"></p>
+<p>部署并查看：</p>
+<pre class="language-none"><code class="language-none">kubectl apply -f recommended.yaml
+kubectl get svc,pods -n kubernetes-dashboard</code></pre>
+<p>访问 Dashboard的web界面<br>访问地址：<a target="_blank" rel="noopener" href="https://nodeip:30001/">https://NodeIP:30001</a> 【必须是https】，部署在node节点的，用node节点的ip，而且google浏览器因为证书问题无法访问，用360极速可以访问</p>
+<p>创建service account并绑定默认cluster-admin管理员集群角色：【依次执行】</p>
+<pre class="language-powershell" data-language="powershell"><code class="language-powershell">kubectl create serviceaccount dashboard-admin <span class="token operator">-</span>n kube-system
+kubectl create clusterrolebinding dashboard-admin <span class="token operator">--</span>clusterrole=cluster-admin <span class="token operator">--</span>serviceaccount=kube-system:dashboard-admin
+kubectl describe secrets <span class="token operator">-</span>n kube-system $<span class="token punctuation">(</span>kubectl <span class="token operator">-</span>n kube-system get secret <span class="token punctuation">|</span> awk <span class="token string">'/dashboard-admin/&#123;print $1&#125;'</span><span class="token punctuation">)</span></code></pre>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/115159/1642493748533-e0e0032f-76da-4720-aefa-80a06f146fb2.png#averageHue=%23f9f5f2&clientId=u5daf5834-5651-4&from=paste&id=u8408817a&originHeight=418&originWidth=1079&originalType=url&ratio=1&rotation=0&showTitle=false&size=77885&status=done&style=none&taskId=u42b877b3-a93b-4eed-92ef-076381372dc&title=" alt="image.png"></p>
+<p>然后介绍一个更好的管理工具：<br><a target="_blank" rel="noopener" href="https://www.kuboard.cn/">https://www.kuboard.cn/</a></p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">JIANG XIAOFAN</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://shuangdeyu.github.io/2023/12/08/k8s-xue-xi-bi-ji-1-kubeadm-an-zhuang-k8s/">https://shuangdeyu.github.io/2023/12/08/k8s-xue-xi-bi-ji-1-kubeadm-an-zhuang-k8s/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">JIANG XIAOFAN</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/docker/">
+                                    <span class="chip bg-color">docker</span>
+                                </a>
+                            
+                                <a href="/tags/k8s/">
+                                    <span class="chip bg-color">k8s</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments textarea {
+        box-sizing: border-box;
+        background: url("/medias/comment_bg4.jpeg") 100% 100% no-repeat;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #4cbf30;
+        font-weight: 500;
+        text-decoration: none;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="vcomments" class="card-content" style="display: grid">
+    </div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'Cu0yGDQXYEoC2BMFqoMyqSK1-gzGzoHsz',
+        appKey: 'PYfyCYN5lI59X5Rczd5IGls5',
+        notify: 'false' === 'true',
+        verify: 'true' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '20',
+        lang: 'zh-cn',
+        placeholder: 'hi，留个脚印吧'
+    });
+</script>
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2023/12/13/macos-shang-shi-yong-cai-keng-db2-ji-lu/">
+                    <div class="card-image">
+                        
+                        <img src="/gallery/DB2.png" class="responsive-img" alt="macOS上使用踩坑DB2记录">
+                        
+                        <span class="card-title">macOS上使用踩坑DB2记录</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-12-13
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%8A%80%E6%9C%AF/" class="post-category">
+                                    技术
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/database/">
+                        <span class="chip bg-color">database</span>
+                    </a>
+                    
+                    <a href="/tags/mac/">
+                        <span class="chip bg-color">mac</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2023/12/07/ru-he-zai-mac-shang-an-zhuang-oracle/">
+                    <div class="card-image">
+                        
+                        <img src="/gallery/oracle.jpg" class="responsive-img" alt="如何在Mac上安装oracle">
+                        
+                        <span class="card-title">如何在Mac上安装oracle</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-12-07
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%8A%80%E6%9C%AF/" class="post-category">
+                                    技术
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/database/">
+                        <span class="chip bg-color">database</span>
+                    </a>
+                    
+                    <a href="/tags/mac/">
+                        <span class="chip bg-color">mac</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="113118807"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2024</span>
+            
+            <span id="year">2019</span>
+            <a href="/about" target="_blank">JIANG XIAOFAN</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">107k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

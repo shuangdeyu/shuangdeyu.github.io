@@ -1,0 +1,1436 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="centos上安装lnmp环境, 双的鱼 双的鱼博客 hexo博客 个人博客">
+    <meta name="description" content="双的鱼博客，记录我的学习和感想">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>centos上安装lnmp环境 | 双的鱼博客</title>
+    <link rel="icon" type="image/png" href="/images/logo.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="双的鱼博客" type="application/atom+xml">
+</head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/images/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">双的鱼博客</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/weibo" class="waves-effect waves-light">
+      
+      <i class="fa fa-comment" style="zoom: 0.6;"></i>
+      
+      <span>微博</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/album" class="waves-effect waves-light">
+      
+      <i class="fa fa-camera-retro" style="zoom: 0.6;"></i>
+      
+      <span>相册</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/images/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">双的鱼博客</div>
+        <div class="logo-desc">
+            
+            双的鱼博客，记录我的学习和感想
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/weibo" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fa fa-comment"></i>
+			
+			微博
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/album" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fa fa-camera-retro"></i>
+			
+			相册
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/gallery/hero.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">centos上安装lnmp环境</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+        height: auto;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+        max-height: calc(100vh - 10rem);
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+        overflow: auto;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/linux/">
+                                <span class="chip bg-color">linux</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E6%8A%80%E6%9C%AF/" class="post-category">
+                                技术
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2017-04-12
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    1.7k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    7 分
+                </div>
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>首先简单介绍一下linux的两种安装方法，<strong>yum以及编译安装</strong>。yum是一个软件包管理器，使用yum指令安装，系统会自动下载软件包并安装，并且还能自动处理依赖，安装依赖包，优点是方便简单，缺点是管理器的软件包往往不是最新版的，甚至可能比较老旧。</p>
+<p>而编译安装则需要自己找相关软件的代码源，下载的软件都是没有编译的代码，所以需要自己编译成可执行文件，所以叫做编译安装，它的优点是软件源自己寻找，可以是最新的，也可以是旧的，比较灵活，缺点是操作步骤多，安装繁琐，新手失败率大。</p>
+<p>虽然yum安装的软件版本比较低，但我们可以通过配置第三方yum源的方式来安装较新版本的软件，下面我就整理介绍一下通过这种方式安装成功的步骤。</p>
+<h6 id="参考了下面教程"><a href="#参考了下面教程" class="headerlink" title="参考了下面教程"></a>参考了下面教程</h6><p><a href="">http://www.cnblogs.com/toughlife/p/5479271.html</a><br><a href="">http://www.cnblogs.com/xiaoit/p/3991037.html</a><br><a href="">http://www.2cto.com/os/201702/597890.html</a></p>
+<h6 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h6><p>首先你需要一台装好centos系统的虚拟机或服务器，本机测试环境是<em>CentOS Linux release 7.3.1611</em></p>
+<hr>
+<h3 id="1、配置第三方yum源"><a href="#1、配置第三方yum源" class="headerlink" title="1、配置第三方yum源"></a><strong>1、配置第三方yum源</strong></h3><p>先看一下默认yum安装的php版本，会发现版本比较低</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># yum list php</span>
+php.x86_64 <span class="token number">5.4</span>.16-42.el7 base</code></pre>
+
+<p>安装centos7的源(注意不是6.5，源要与系统大版本号对应，否则会出错)</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># yum install epel-release</span>
+<span class="token comment"># rpm -ivh http://rpms.famillecollet.com/enterprise/remi-release-7.rpm</span></code></pre>
+
+<p>接下来使用扩展源搜索php的版本，我们发现能搜索到更高版本的软件源了</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># yum list --enablerepo=remi --enablerepo=remi-php56 php</span>
+php.x86_64 <span class="token number">5.6</span>.30-1.el7.remi remi-php56
+
+<span class="token comment"># yum list --enablerepo=remi --enablerepo=remi-php70 php</span>
+php.x86_64 <span class="token number">7.0</span>.17-1.el7.remi remi-php70</code></pre>
+
+<p>关于yum第三方源网上有很多资源，我们可以自行选择，以上是php的源，mysql的源网上也有，这里就不介绍了，道理都是一样的</p>
+<h3 id="2、安装php"><a href="#2、安装php" class="headerlink" title="2、安装php"></a><strong>2、安装php</strong></h3><p>使用扩展源yum安装php及一堆扩展，这里选择5.6版本的</p>
+<p><code># yum install --enablerepo=remi --enablerepo=remi-php56 php php-fpm php-opcache php-devel php-mbstring php-mcrypt php-mysqlnd php-phpunit-PHPUnit php-pecl-xdebug php-pecl-xhprof</code></p>
+<p>使用下面两个指令，任选其一，查看是否安装成功，如果正确显示版本号或路径信息，则表示安装成功了</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># php --version</span>
+<span class="token comment"># which php</span></code></pre>
+
+<p>顺便启动一下php-fpm，再设置一下这个服务的开机启动</p>
+<pre class="language-none"><code class="language-none"># &#x2F;bin&#x2F;systemctl start  php-fpm.service
+# chkconfig php-fpm on</code></pre>
+
+<h3 id="3、安装nginx"><a href="#3、安装nginx" class="headerlink" title="3、安装nginx"></a><strong>3、安装nginx</strong></h3><p>由于没有设置过nginx的yum源，默认安装就好</p>
+<p><code>#yum install nginx</code></p>
+<p>查看是否安装成功，成功显示版本号信息表示安装成功，或者在浏览器输入’localhost’，看是否出现如下页面</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># which nginx</span>
+/usr/sbin/nginx
+
+<span class="token comment"># /usr/sbin/nginx -v</span>
+nginx version: nginx/1.10.2</code></pre>
+
+<p><img src="http://upload-images.jianshu.io/upload_images/716745-504a470b86d6fb79.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></p>
+<p>启动nginx服务，并设置开机启动</p>
+<pre class="language-none"><code class="language-none"># &#x2F;bin&#x2F;systemctl start  nginx.service
+# chkconfig nginx on</code></pre>
+
+<h3 id="4、配置nginx支持php"><a href="#4、配置nginx支持php" class="headerlink" title="4、配置nginx支持php"></a><strong>4、配置nginx支持php</strong></h3><p>nginx默认是不支持php脚本编译的，所以需要先配置</p>
+<p>将配置文件改为备份文件</p>
+<p><code># mv /etc/nginx/nginx.conf /etc/nginx/nginx.confbak</code></p>
+<p>将默认的配置文件作为配置文件</p>
+<p><code># cp /etc/nginx/nginx.conf.default /etc/nginx/nginx.conf</code></p>
+<p>进入nginx配置文件进行修改</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># vi /etc/nginx/nginx.conf</span>
+
+找到80端口的配置，加入index.php
+index index.php index.html index.htm<span class="token punctuation">;</span>
+
+加入下面的配置代码，如果已经存在的，去掉注释，并修改,其中/usr/share/nginx/html是web根目录的地址，可以根据自己的喜好进行选择，我一般放在/var/www下
+
+location ~ <span class="token punctuation">\</span>.php$ <span class="token punctuation">&#123;</span>
+	root           /usr/share/nginx/html<span class="token punctuation">;</span>
+	fastcgi_pass   <span class="token number">127.0</span>.0.1:9000<span class="token punctuation">;</span>
+	fastcgi_index  index.php<span class="token punctuation">;</span>
+	fastcgi_param  SCRIPT_FILENAME  /usr/share/nginx/html<span class="token variable">$fastcgi_script_name</span><span class="token punctuation">;</span>
+	include        fastcgi_params<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<p>最后，编辑文件php.ini，在文件末尾添加cgi.fix_pathinfo = 1，已经存在的去掉注释就好了</p>
+<p><code># vi /etc/php.ini</code></p>
+<p>重启nginx和php-fpm服务</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># /bin/systemctl restart  nginx.service</span>
+<span class="token comment"># /bin/systemctl restart php-fpm.service</span></code></pre>
+
+<p>然后新建一个php文件，写一个测试代码，最常见的就是输出phpinfo();</p>
+<p><code># vi /usr/share/nginx/html/test.php</code></p>
+<p>在浏览器输入’localhost/test.php’，如果如下图所示，表示配置成功</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/716745-780372e6b48711e1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></p>
+<h3 id="5、安装MySQL"><a href="#5、安装MySQL" class="headerlink" title="5、安装MySQL"></a><strong>5、安装MySQL</strong></h3><p>同样，MySQL使用原生的yum安装，安装MySQL以及它的服务</p>
+<p><code># yum install mysql mysql-server mysql-devel</code></p>
+<p>在安装过程中我们会发现**<em>没有可用软件包 mysql-server。**</em>这个提示，因为centos7默认的数据库不是MySQL，而是Mariadb。</p>
+<p>Mariadb是MySQL的一个分支，但完全兼容MySQL，它对应的服务是Mariadb—server，其使用方法和MySQL几乎一致，实际上你执行‘yum install mysql’安装的就是Mariadb，如果不习惯还是想使用MySQL服务也是可以的，只要按下面步骤下载包安装即可。</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># wget http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm</span>
+<span class="token comment"># rpm -ivh mysql-community-release-el7-5.noarch.rpm</span>
+<span class="token comment"># yum install mysql-server</span></code></pre>
+
+<p>值得注意的是安装mysql服务的时候，会安装一些依赖，原来的Mariadb将会被MySQL替代掉，最后，开启服务，如果没有报错表示安装成功，同时设置开机启动</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># /bin/systemctl start  mysqld.service</span>
+<span class="token comment"># chkconfig mysqld on</span></code></pre>
+
+<p>如果还想进一步验证，可以使用sql指令验证，输入‘mysql’指令就可以进入sql指令命令窗口</p>
+<p><code># mysql</code></p>
+<h3 id="6、总结"><a href="#6、总结" class="headerlink" title="6、总结"></a><strong>6、总结</strong></h3><p>至此，lnmp的环境就算搭建好了，以上仅供参考，遇到问题多搜索，多探索，总会解决的。</p>
+<hr>
+<h3 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a><strong>扩展</strong></h3><h4 id="1、安装phpmyadmin"><a href="#1、安装phpmyadmin" class="headerlink" title="1、安装phpmyadmin"></a><strong>1、安装phpmyadmin</strong></h4><p>去PHPmyadmin官网下载安装包到本地，然后使用ssh上传到centos上，上传后我的安装包目录是，/usr/local/src/phpMyAdmin.zip</p>
+<p>然后解压安装</p>
+<p><code># unzip /usr/local/src/phpMyAdmin.zip</code></p>
+<p>移动到web访问目录并重命名（注意解压安装之后的文件夹不是‘phpMyAdmin’，而是类似于‘phpMyAdmin-4.7.0-all-languages’这样的，我的默认安装之后是在‘home’文件夹下）</p>
+<p><code># mv phpMyAdmin-4.7.0-all-languages /usr/share/nginx/html/phpmyadmin</code></p>
+<p>然后在浏览器访问‘localhost/phpmyadmin’，如下图所示就表示安装成功了</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/716745-72b0d404b3e0b0d4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></p>
+<p>有些人可能会遇到 403 不能访问的错误，可以看一下是否关闭了selinux或者phpmyadmin文件夹设置了不能访问的权限</p>
+<h4 id="2、配置nginx支持thinkphp"><a href="#2、配置nginx支持thinkphp" class="headerlink" title="2、配置nginx支持thinkphp"></a><strong>2、配置nginx支持thinkphp</strong></h4><p>在原有的配置文件nginx.conf下修改php解析的代码，修改下面注释的三个地方</p>
+<pre class="language-nginx" data-language="nginx"><code class="language-nginx"><span class="token directive"><span class="token keyword">location</span> ~ \.php</span> <span class="token punctuation">&#123;</span>  <span class="token comment">#去掉$</span>
+    <span class="token directive"><span class="token keyword">root</span>           /var/www</span><span class="token punctuation">;</span>
+    <span class="token directive"><span class="token keyword">fastcgi_pass</span>   127.0.0.1:9000</span><span class="token punctuation">;</span>
+    <span class="token directive"><span class="token keyword">fastcgi_index</span>  index.php</span><span class="token punctuation">;</span>
+	<span class="token directive"><span class="token keyword">fastcgi_split_path_info</span> ^(.+\.php)(.*)$</span><span class="token punctuation">;</span>  <span class="token comment">#增加这一句</span>
+	<span class="token directive"><span class="token keyword">fastcgi_param</span> PATH_INFO <span class="token variable">$fastcgi_path_info</span></span><span class="token punctuation">;</span>  <span class="token comment">#增加这一句</span>
+    <span class="token directive"><span class="token keyword">fastcgi_param</span>  SCRIPT_FILENAME  /var/www<span class="token variable">$fastcgi_script_name</span></span><span class="token punctuation">;</span>
+    <span class="token directive"><span class="token keyword">include</span>        fastcgi_params</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<h4 id="3、配置nginx隐藏thinkphp路径中的index-php"><a href="#3、配置nginx隐藏thinkphp路径中的index-php" class="headerlink" title="3、配置nginx隐藏thinkphp路径中的index.php"></a><strong>3、配置nginx隐藏thinkphp路径中的index.php</strong></h4><p>在原有的配置文件nginx.conf下修改代码，添加注释的这一段代码，其中user、tool是你项目文件夹的名称，含有public的是thinkphp5的默认路径</p>
+<pre class="language-nginx" data-language="nginx"><code class="language-nginx"><span class="token directive"><span class="token keyword">location</span> /</span> <span class="token punctuation">&#123;</span>
+    <span class="token directive"><span class="token keyword">root</span>   /var/www</span><span class="token punctuation">;</span>
+    <span class="token directive"><span class="token keyword">index</span> index.php index.html index.htm</span><span class="token punctuation">;</span>
+	<span class="token directive"><span class="token keyword">if</span> (!-e <span class="token variable">$request_filename</span>)</span> <span class="token punctuation">&#123;</span> <span class="token comment">#隐藏index.php</span>
+		<span class="token directive"><span class="token keyword">rewrite</span> ^/user/public/(.*)$ /user/public/index.php/<span class="token variable">$1</span> last</span><span class="token punctuation">;</span>
+        <span class="token directive"><span class="token keyword">rewrite</span> ^/tool/(.*)$ /tool/index.php/<span class="token variable">$1</span> last</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span> <span class="token comment">#隐藏index.php</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">JIANG XIAOFAN</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://shuangdeyu.github.io/2017/04/12/centos-shang-an-zhuang-lnmp-huan-jing/">https://shuangdeyu.github.io/2017/04/12/centos-shang-an-zhuang-lnmp-huan-jing/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">JIANG XIAOFAN</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/linux/">
+                                    <span class="chip bg-color">linux</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments textarea {
+        box-sizing: border-box;
+        background: url("/medias/comment_bg4.jpeg") 100% 100% no-repeat;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #4cbf30;
+        font-weight: 500;
+        text-decoration: none;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="vcomments" class="card-content" style="display: grid">
+    </div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'Cu0yGDQXYEoC2BMFqoMyqSK1-gzGzoHsz',
+        appKey: 'PYfyCYN5lI59X5Rczd5IGls5',
+        notify: 'false' === 'true',
+        verify: 'true' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '20',
+        lang: 'zh-cn',
+        placeholder: 'hi，留个脚印吧'
+    });
+</script>
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2017/06/22/cha-li.mang-ge-de-ni-xiang-si-wei/">
+                    <div class="card-image">
+                        
+                        <img src="/gallery/chali.jpg" class="responsive-img" alt="查理.芒格的逆向思维">
+                        
+                        <span class="card-title">查理.芒格的逆向思维</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2017-06-22
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E9%97%B2%E8%B0%88/" class="post-category">
+                                    闲谈
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%84%9F%E6%83%B3/">
+                        <span class="chip bg-color">感想</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2017/04/12/jiang-hexo-bu-shu-dao-zi-ji-de-fu-wu-qi/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="将hexo部署到自己的服务器">
+                        
+                        <span class="card-title">将hexo部署到自己的服务器</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2017-04-12
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%8A%80%E6%9C%AF/" class="post-category">
+                                    技术
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/hexo/">
+                        <span class="chip bg-color">hexo</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="113118807"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2024</span>
+            
+            <span id="year">2019</span>
+            <a href="/about" target="_blank">JIANG XIAOFAN</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">107k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

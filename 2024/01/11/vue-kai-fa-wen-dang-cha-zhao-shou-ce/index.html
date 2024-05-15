@@ -1,0 +1,1796 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="vue开发文档查找手册, 双的鱼 双的鱼博客 hexo博客 个人博客">
+    <meta name="description" content="双的鱼博客，记录我的学习和感想">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>vue开发文档查找手册 | 双的鱼博客</title>
+    <link rel="icon" type="image/png" href="/images/logo.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="双的鱼博客" type="application/atom+xml">
+</head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/images/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">双的鱼博客</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/weibo" class="waves-effect waves-light">
+      
+      <i class="fa fa-comment" style="zoom: 0.6;"></i>
+      
+      <span>微博</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/album" class="waves-effect waves-light">
+      
+      <i class="fa fa-camera-retro" style="zoom: 0.6;"></i>
+      
+      <span>相册</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/images/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">双的鱼博客</div>
+        <div class="logo-desc">
+            
+            双的鱼博客，记录我的学习和感想
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/weibo" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fa fa-comment"></i>
+			
+			微博
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/album" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fa fa-camera-retro"></i>
+			
+			相册
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/gallery/vue.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">vue开发文档查找手册</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+        height: auto;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+        max-height: calc(100vh - 10rem);
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+        overflow: auto;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/vue/">
+                                <span class="chip bg-color">vue</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E6%8A%80%E6%9C%AF/" class="post-category">
+                                技术
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2024-01-11
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    3.8k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    13 分
+                </div>
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>对于前端不是很熟悉，刚开始学vue很多概念还是很模糊的，官方文档的一些前端术语对于我这个后端来说第一世间不是很能理解</p>
+<p>所以把官方文档里面的目录整理了下，每个条目下都有哪些内容，当做一个查找手册，至少遇到问题能够快速在文档中进行定位</p>
+<blockquote>
+<p>官网地址：<a target="_blank" rel="noopener" href="https://cn.vuejs.org/guide/introduction.html">https://cn.vuejs.org/guide/introduction.html</a></p>
+</blockquote>
+<h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><h3 id="模板语法"><a href="#模板语法" class="headerlink" title="模板语法"></a>模板语法</h3><p>模板（HTML）的相关操作</p>
+<ul>
+<li>动态文本插值：<code>&lt;span&gt;Message: &#123;&#123; msg &#125;&#125;&lt;/span&gt;</code></li>
+<li>v-html 指令：插入一个html，而不是纯文本</li>
+<li>v-bind 指令：将html中的元素的值跟变量进行动态绑定，比如给 div 动态设置 class 操作</li>
+<li>指令 v-： 带有 v- 前缀的，见<a target="_blank" rel="noopener" href="https://cn.vuejs.org/api/built-in-directives.html">内置指令</a>，有各种功能<ul>
+<li>有些能简写，比如用 :、@ 就行</li>
+<li>还能绑定动态属性，比如： <code>&lt;a v-on:[eventName]=&quot;doSomething&quot;&gt; ... &lt;/a&gt;</code></li>
+</ul>
+</li>
+<li>数据绑定支持 js 表达式写法：比如<code>&#123;&#123; number + 1 &#125;&#125;</code>，但不支持复杂的写法</li>
+</ul>
+<h3 id="响应式基础"><a href="#响应式基础" class="headerlink" title="响应式基础"></a>响应式基础</h3><p>指自动追踪数据变化的功能，更新机制是 <strong>每当数据有变化时才会重现渲染DOM</strong></p>
+<ul>
+<li>ref()：最常用的<ul>
+<li>Ref 可以持有任何类型的值，包括深层嵌套的对象、数组或者 JavaScript 内置的数据结构</li>
+<li>Ref 会使它的值具有深层响应性。这意味着即使改变嵌套对象或数组时，变化也会被检测到</li>
+</ul>
+</li>
+<li><code>&lt;script setup&gt;</code>：</li>
+<li>reactive()：另一种响应式，是对象本身具有响应性<ul>
+<li>返回的是一个原始对象的 Proxy(代理)，它和原始对象是不相等</li>
+<li>局限性多</li>
+</ul>
+</li>
+<li>ref 解包细节</li>
+</ul>
+<h3 id="计算属性"><a href="#计算属性" class="headerlink" title="计算属性"></a>计算属性</h3><p>是一种在模板中声明数据的衍生属性的方式</p>
+<p>将复杂逻辑放在 script 中计算输出，然后直接在模板中引用，不用在模板中进行复杂逻辑计算</p>
+<ul>
+<li>计算属性缓存 vs 方法<ul>
+<li><strong>计算属性值会基于其响应式依赖被缓存</strong>。一个计算属性仅会在其响应式依赖更新时才重新计算</li>
+<li>方法调用总是会在重渲染发生时再次执行函数</li>
+</ul>
+</li>
+<li>可写计算属性：计算属性默认是只读的<ul>
+<li>可以通过同时提供 getter 和 setter 来支持计算</li>
+</ul>
+</li>
+</ul>
+<h3 id="类与样式绑定"><a href="#类与样式绑定" class="headerlink" title="类与样式绑定"></a>类与样式绑定</h3><p>讲述的是html中 class 的绑定和 css 样式的一些动态操作</p>
+<p>Vue 专门为 class 和 style 的 v-bind 用法提供了特殊的功能增强。除了字符串外，表达式的值也可以是对象或数组</p>
+<ul>
+<li>绑定html class<ul>
+<li>绑定对象</li>
+<li>绑定数组</li>
+<li>在组件上使用绑定</li>
+</ul>
+</li>
+<li>绑定内联样式 style<ul>
+<li>绑定对象</li>
+<li>绑定数组</li>
+</ul>
+</li>
+</ul>
+<h3 id="条件渲染"><a href="#条件渲染" class="headerlink" title="条件渲染"></a>条件渲染</h3><p>条件运算</p>
+<ul>
+<li>v-if</li>
+<li>v-else</li>
+<li>v-else-if</li>
+<li><code>&lt;template&gt;</code> 上的 v-if<ul>
+<li>可以同时切换template包裹的多个元素</li>
+</ul>
+</li>
+<li>v-show</li>
+<li>v-if vs. v-show</li>
+</ul>
+<h3 id="列表渲染"><a href="#列表渲染" class="headerlink" title="列表渲染"></a>列表渲染</h3><p>比如后端返回列表，前端用这个渲染</p>
+<ul>
+<li>v-for</li>
+<li>v-for与对象</li>
+<li><code>&lt;template&gt;</code> 上的 v-for</li>
+<li>v-if 和 v-for</li>
+<li>通过key管理状态<ul>
+<li>key是内置的特殊指令</li>
+<li>类似于id，根据key的变化顺序重新排列元素</li>
+<li>推荐在任何可行的时候为 v-for 提供一个 key</li>
+</ul>
+</li>
+<li>组件上使用v-for</li>
+<li>数组变化侦测<ul>
+<li>Vue 能够侦听响应式数组的变更方法，并在它们被调用时触发相关的更新</li>
+</ul>
+</li>
+<li>展示过滤或排序后的结果</li>
+</ul>
+<h3 id="事件处理"><a href="#事件处理" class="headerlink" title="事件处理"></a>事件处理</h3><ul>
+<li>监听事件：v-on:[触发动作] 指令 (简写为 @)</li>
+<li>内联事件处理器：通常用于简单场景</li>
+<li>方法事件处理器：v-on 也可以接受一个方法名或对某个方法的调用</li>
+<li>在内联处理器中调用方法</li>
+<li>在内联事件处理器中访问事件参数：在内联事件处理器中访问原生 DOM 事件</li>
+<li>事件修饰符：修饰符是用 . 表示的指令后缀，比如 @click.stop</li>
+<li>按键修饰符：监听按了哪个按键</li>
+<li>鼠标按键修饰符</li>
+</ul>
+<h3 id="表单输入绑定"><a href="#表单输入绑定" class="headerlink" title="表单输入绑定"></a>表单输入绑定</h3><p>在前端处理表单时，我们常常需要将表单输入框的内容同步给 JavaScript 中相应的变量。手动连接值绑定和更改事件监听器可能会很麻烦，<code>v-model</code> 指令帮我们简化了这一步骤</p>
+<ul>
+<li>基本用法<ul>
+<li>文本</li>
+<li>多行文本</li>
+<li>复选框</li>
+<li>单选按钮</li>
+<li>选择器</li>
+</ul>
+</li>
+<li>值绑定<ul>
+<li>复选框</li>
+<li>单选按钮</li>
+<li>选择器选项</li>
+</ul>
+</li>
+<li>修饰符<ul>
+<li>.lazy</li>
+<li>.number</li>
+<li>.trim</li>
+</ul>
+</li>
+<li>组件上的 v-model</li>
+</ul>
+<h3 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h3><ul>
+<li>注册周期钩子<ul>
+<li>举例来说，onMounted 钩子可以用来在组件完成初始渲染并创建 DOM 节点后运行代码</li>
+</ul>
+</li>
+<li>生命周期图示</li>
+</ul>
+<p>还有其他一些钩子，会在实例生命周期的不同阶段被调用，最常用的是 onMounted、onUpdated 和 onUnmounted。所有生命周期钩子的完整参考及其用法请参考 <a target="_blank" rel="noopener" href="https://cn.vuejs.org/api/composition-api-lifecycle.html">API 索引</a></p>
+<h3 id="侦听器"><a href="#侦听器" class="headerlink" title="侦听器"></a>侦听器</h3><p>计算属性允许我们声明性地计算衍生值。然而在有些情况下，我们需要在状态变化时执行一些“副作用”：例如更改 DOM，或是根据异步操作的结果去修改另一处的状态。</p>
+<p>在组合式 API 中，我们可以使用 watch 函数在每次响应式状态发生变化时触发回调函数</p>
+<ul>
+<li>侦听数据源类型</li>
+<li>深层侦听器：deep: true</li>
+<li>即时回调的侦听器：immediate: true</li>
+<li>watchEffect()</li>
+<li>回调的触发时机<ul>
+<li>默认情况下，用户创建的侦听器回调，都会在 Vue 组件更新之前被调用</li>
+<li>想在侦听器回调中能访问被 Vue 更新之后的 DOM，你需要指明 flush: ‘post’ 选项</li>
+</ul>
+</li>
+<li>停止侦听器<ul>
+<li>如果用异步回调创建一个侦听器，那么它不会绑定到当前组件上，你必须手动停止它，以防内存泄漏</li>
+</ul>
+</li>
+</ul>
+<h3 id="模板引用"><a href="#模板引用" class="headerlink" title="模板引用"></a>模板引用</h3><p>ref 是一个特殊的 attribute，和 v-for 章节中提到的 key 类似。它允许我们在一个特定的 DOM 元素或子组件实例被挂载后，获得对它的直接引用</p>
+<ul>
+<li>访问模板引用​</li>
+<li>v-for 中的模板引用</li>
+<li>函数模板引用<ul>
+<li>除了使用字符串值作名字，ref attribute 还可以绑定为一个函数，会在每次组件更新时都被调用</li>
+</ul>
+</li>
+<li>组件上的ref</li>
+</ul>
+<h3 id="组件基础"><a href="#组件基础" class="headerlink" title="组件基础"></a>组件基础</h3><p>组件允许我们将 UI 划分为独立的、可重用的部分，并且可以对每个部分进行单独的思考。在实际应用中，组件常常被组织成层层嵌套的树状结构</p>
+<ul>
+<li>定义一个组件</li>
+<li>使用组件</li>
+<li>传递 props<ul>
+<li>Props 是一种特别的 attributes，你可以在组件上声明注册</li>
+<li>当一个 prop 被注册后，可以像这样以自定义 attribute 的形式传递数据给它</li>
+<li>以博客文章举例</li>
+</ul>
+</li>
+<li>监听事件</li>
+<li>通过插槽来分配内容<ul>
+<li><code>&lt;slot /&gt;</code>：占位符，父组件传递进来的内容就会渲染在这里</li>
+</ul>
+</li>
+<li>动态组件：有些场景会需要在两个组件间来回切换，比如 Tab 界面<ul>
+<li><code>&lt;component&gt;</code> 元素和特殊的 <code>is</code> attribute</li>
+</ul>
+</li>
+<li>DOM内模板解析注意事项<ul>
+<li>大小写区分：需要转换为相应等价的 kebab-case (短横线连字符) 形式</li>
+<li>闭合标签：必须显式地写出关闭标签</li>
+<li>元素位置限制</li>
+</ul>
+</li>
+</ul>
+<h2 id="深入组件"><a href="#深入组件" class="headerlink" title="深入组件"></a>深入组件</h2><h3 id="注册"><a href="#注册" class="headerlink" title="注册"></a>注册</h3><p>组件注册有两种方式：全局注册和局部注册</p>
+<ul>
+<li>全局注册<ul>
+<li><code>.component()</code> 方法</li>
+</ul>
+</li>
+<li>局部注册</li>
+<li>组件名格式<ul>
+<li>使用 PascalCase 作为组件名的注册格式</li>
+</ul>
+</li>
+</ul>
+<h3 id="Props"><a href="#Props" class="headerlink" title="Props"></a>Props</h3><ul>
+<li>Props声明<ul>
+<li>使用 <code>&lt;script setup&gt;</code> 的单文件组件中：使用 <code>defineProps()</code> 宏来声明</li>
+<li>没有使用 <code>&lt;script setup&gt;</code> 的组件中：使用 <code>props</code> 选项来声明</li>
+</ul>
+</li>
+<li>传递prop的细节<ul>
+<li>Prop名字格式：<strong>camelCase</strong> 驼峰式，传递时写为 <strong>kebab-case</strong> 形式</li>
+<li>静态VS动态 Prop</li>
+<li>传递不同的值类型</li>
+<li>使用一个对象绑定多个 prop</li>
+</ul>
+</li>
+<li>单向数据流<ul>
+<li>props 都遵循着单向绑定原则</li>
+<li>更改对象 / 数组类型的 props，对象和数组是按引用传递，可以改值，但VUE中不推荐改</li>
+</ul>
+</li>
+<li>Prop 校验：即参数校验</li>
+<li>Boolean 类型转换</li>
+</ul>
+<h3 id="组件事件"><a href="#组件事件" class="headerlink" title="组件事件"></a>组件事件</h3><ul>
+<li>触发与监听事件<ul>
+<li>使用 <code>$emit</code> 方法触发自定义事件</li>
+<li>父组件可以通过 <code>v-on</code> (缩写为 @) 来监听事件</li>
+<li>组件的事件监听器也支持 <code>.once</code> 修饰符</li>
+</ul>
+</li>
+<li>事件参数<ul>
+<li>所有传入 $emit() 的额外参数都会被直接传向监听器</li>
+</ul>
+</li>
+<li>声明触发的事件<ul>
+<li>组件可以显式地通过 defineEmits() 宏来声明它要触发的事件</li>
+</ul>
+</li>
+<li>事件校验</li>
+</ul>
+<h3 id="组件v-model"><a href="#组件v-model" class="headerlink" title="组件v-model"></a>组件v-model</h3><p>v-model 可以在组件上使用以实现双向绑定</p>
+<ul>
+<li>v-model 的参数</li>
+<li>多个 v-model 绑定</li>
+<li>处理 v-model 修饰符<ul>
+<li>带参数的 v-model 修饰符</li>
+</ul>
+</li>
+</ul>
+<h3 id="透传-Attributes"><a href="#透传-Attributes" class="headerlink" title="透传 Attributes"></a>透传 Attributes</h3><p>“透传 attribute”指的是传递给一个组件，却没有被该组件声明为 props 或 emits 的 attribute 或者 v-on 事件监听器。最常见的例子就是 class、style 和 id</p>
+<ul>
+<li>Attributes 继承<ul>
+<li>对 class 和 style 的合并</li>
+<li>v-on 监听器继承</li>
+<li>深层组件继承</li>
+</ul>
+</li>
+<li>禁用属性继承</li>
+<li>多根节点的Attributes继承</li>
+<li>在 JavaScript 中访问透传 Attributes</li>
+</ul>
+<h3 id="插槽-Slots"><a href="#插槽-Slots" class="headerlink" title="插槽 Slots"></a>插槽 Slots</h3><ul>
+<li>插槽内容与出口<ul>
+<li><code>&lt;slot&gt;</code> 元素是一个插槽出口 (slot outlet)，标示了父元素提供的插槽内容 (slot content) 将在哪里被渲染</li>
+</ul>
+</li>
+<li>渲染作用域</li>
+<li>默认内容：可以为插槽指定默认内容</li>
+<li>具名插槽</li>
+<li>动态插槽名：v-slot</li>
+<li>作用域插槽<ul>
+<li>具名作用域插槽</li>
+<li>高级列表组件示例</li>
+<li>无渲染组件</li>
+</ul>
+</li>
+</ul>
+<h3 id="依赖注入"><a href="#依赖注入" class="headerlink" title="依赖注入"></a>依赖注入</h3><ul>
+<li>Prop 逐级透传问题<ul>
+<li>provide、inject</li>
+<li>一个父组件相对于其所有的后代组件，会作为依赖提供者。任何后代的组件树，无论层级有多深，都可以注入由父组件提供给整条链路的依赖</li>
+</ul>
+</li>
+<li>Provide (提供)：为组件后代提供数据</li>
+<li>应用层 Provide</li>
+<li>Inject (注入)<ul>
+<li>注入默认值</li>
+</ul>
+</li>
+<li>和响应式数据配合使用<ul>
+<li>如果你想确保提供的数据不能被注入方的组件更改，你可以使用 readonly() 来包装提供的值</li>
+</ul>
+</li>
+<li>使用 Symbol 作注入名</li>
+</ul>
+<h3 id="异步组件"><a href="#异步组件" class="headerlink" title="异步组件"></a>异步组件</h3><p>在大型项目中，我们可能需要拆分应用为更小的块，并仅在需要时再从服务器加载相关组件</p>
+<ul>
+<li>基本用法：<code>defineAsyncComponent</code></li>
+<li>加载与错误状态</li>
+<li>搭配 <a target="_blank" rel="noopener" href="https://cn.vuejs.org/guide/built-ins/suspense.html">Suspense</a> 使用</li>
+</ul>
+<h2 id="逻辑复用"><a href="#逻辑复用" class="headerlink" title="逻辑复用"></a>逻辑复用</h2><h3 id="组合式函数"><a href="#组合式函数" class="headerlink" title="组合式函数"></a>组合式函数</h3><p>是一个利用 Vue 的组合式 API 来封装和复用<strong>有状态逻辑</strong>的函数</p>
+<ul>
+<li>鼠标跟踪器示例</li>
+<li>异步状态示例<ul>
+<li>接收响应式状态：<code>watchEffect()</code> 、 <code>toValue()</code></li>
+</ul>
+</li>
+<li>约定和最佳实践<ul>
+<li>命名、输入参数、返回值、副作用、使用限制</li>
+</ul>
+</li>
+<li>通过抽取组合式函数改善代码结构</li>
+<li>在选项式API中使用组合式函数</li>
+<li>与其他模式的比较</li>
+<li>延伸阅读<ul>
+<li>深入响应式原理：理解 Vue 响应性系统的底层细节</li>
+<li>状态管理：多个组件间共享状态的管理模式</li>
+<li>测试组合式函数：组合式函数的单元测试技巧</li>
+<li>VueUse：一个日益增长的 Vue 组合式函数集合。源代码本身就是一份不错的学习资料</li>
+</ul>
+</li>
+</ul>
+<h3 id="自定义指令"><a href="#自定义指令" class="headerlink" title="自定义指令"></a>自定义指令</h3><p>除了 Vue 内置的一系列指令 (比如 v-model 或 v-show) 之外，Vue 还允许你注册自定义的指令</p>
+<p>在 <code>&lt;script setup&gt;</code> 中，任何以 v 开头的驼峰式命名的变量都可以被用作一个自定义指令</p>
+<p>在没有使用 <code>&lt;script setup&gt;</code> 的情况下，自定义指令需要通过 directives 选项注册</p>
+<ul>
+<li>指令钩子</li>
+<li>简化形式</li>
+<li>对象字面量</li>
+<li>在组件上使用</li>
+</ul>
+<h3 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h3><p>插件 (Plugins) 是一种能为 Vue 添加全局功能的工具代码</p>
+<ul>
+<li>编写一个插件</li>
+</ul>
+<h2 id="内置组件"><a href="#内置组件" class="headerlink" title="内置组件"></a>内置组件</h2><h3 id="Transition"><a href="#Transition" class="headerlink" title="Transition"></a>Transition</h3><p>Vue 提供了两个内置组件，可以帮助你制作基于状态变化的过渡和动画，见以下两个组件：</p>
+<ul>
+<li><code>&lt;Transition&gt;</code> 组件</li>
+<li>基于CSS的过渡效果</li>
+<li>JavaScript 钩子</li>
+<li>可复用过渡效果</li>
+<li>出现时过渡</li>
+<li>元素间过渡</li>
+<li>过渡模式</li>
+<li>组件间过渡</li>
+<li>动态过渡</li>
+</ul>
+<h3 id="TransitionGroup"><a href="#TransitionGroup" class="headerlink" title="TransitionGroup"></a>TransitionGroup</h3><p>用于对 v-for 列表中的元素或组件的插入、移除和顺序改变添加动画效果</p>
+<ul>
+<li>和 <code>&lt;Transition&gt;</code> 的区别</li>
+<li>进入/离开动画</li>
+<li>移动动画</li>
+<li>渐进延迟列表动画</li>
+</ul>
+<h3 id="KeepAlive"><a href="#KeepAlive" class="headerlink" title="KeepAlive"></a>KeepAlive</h3><p>它的功能是在多个组件间动态切换时缓存被移除的组件实例</p>
+<ul>
+<li>基本使用</li>
+<li>包含/排除</li>
+<li>最大缓存实例数</li>
+<li>缓存实例的生命周期</li>
+</ul>
+<h3 id="Teleport"><a href="#Teleport" class="headerlink" title="Teleport"></a>Teleport</h3><p>它可以将一个组件内部的一部分模板“传送”到该组件的 DOM 结构外层的位置去</p>
+<p>modal弹窗可以使用这个组件实现</p>
+<ul>
+<li>基本用法</li>
+<li>搭配组件使用</li>
+<li>禁用Teleport</li>
+<li>多个Teleport共享目标</li>
+</ul>
+<h3 id="Suspense"><a href="#Suspense" class="headerlink" title="Suspense"></a>Suspense</h3><p>是一个实验性功能</p>
+<p>用来在组件树中协调对异步依赖的处理。它让我们可以在组件树上层等待下层的多个嵌套异步依赖项解析完成，并可以在等待时渲染一个加载状态</p>
+<ul>
+<li>异步依赖</li>
+<li>加载中状态</li>
+<li>事件</li>
+<li>错误处理</li>
+<li>和其他组件结合</li>
+</ul>
+<h2 id="应用规模化"><a href="#应用规模化" class="headerlink" title="应用规模化"></a>应用规模化</h2><h3 id="单文件组件"><a href="#单文件组件" class="headerlink" title="单文件组件"></a>单文件组件</h3><p>我们能够将一个 Vue 组件的模板、逻辑与样式封装在单个文件中，叫做单文件组件，简称SFC</p>
+<ul>
+<li>为什么要使用SFC</li>
+<li>SFC是如何工作的</li>
+<li>如何看待关注点分离</li>
+</ul>
+<h3 id="工具链"><a href="#工具链" class="headerlink" title="工具链"></a>工具链</h3><p>介绍Vue相关的插件，脚手架，格式化等工具链</p>
+<ul>
+<li><p>项目脚手架</p>
+<ul>
+<li>Vite：优先选项</li>
+<li>Vue CLI</li>
+</ul>
+</li>
+<li><p>代码规范</p>
+<h3 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h3></li>
+<li><p>客户端vs服务端路由</p>
+</li>
+<li><p>官方路由</p>
+</li>
+<li><p>从头开始实现一个简单的路由</p>
+</li>
+</ul>
+<h3 id="状态管理"><a href="#状态管理" class="headerlink" title="状态管理"></a>状态管理</h3><ul>
+<li>用响应式 API 做简单状态管理</li>
+<li>SSR相关细节</li>
+<li>Pinia</li>
+</ul>
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><h3 id="服务端渲染-SSR"><a href="#服务端渲染-SSR" class="headerlink" title="服务端渲染(SSR)"></a>服务端渲染(SSR)</h3><ul>
+<li>总览<ul>
+<li>什么是SSR</li>
+<li>为什么要用SSR</li>
+<li>SSR vs. SSG</li>
+</ul>
+</li>
+<li>基础教程<ul>
+<li>渲染一个应用</li>
+<li>客户端激活</li>
+<li>代码结构</li>
+</ul>
+</li>
+<li>更通用的解决方案<ul>
+<li>Nuxt</li>
+<li>Quasar</li>
+<li>Vite SSR</li>
+</ul>
+</li>
+<li>书写SSR友好的代码<ul>
+<li>服务端响应性</li>
+<li>组件生命周期钩子</li>
+<li>访问平台特有API</li>
+<li>跨请求状态污染</li>
+<li>激活不匹配</li>
+<li>自定义指令</li>
+<li>Teleports</li>
+</ul>
+</li>
+</ul>
+<h2 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h2><h3 id="生产部署"><a href="#生产部署" class="headerlink" title="生产部署"></a>生产部署</h3><ul>
+<li>开发环境 vs. 生产环境</li>
+<li>不使用构建工具</li>
+<li>使用构建工具</li>
+<li>追踪运行时错误</li>
+</ul>
+<h3 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h3><ul>
+<li>分析选项</li>
+<li>页面加载优化<ul>
+<li>选用正确的架构</li>
+<li>包体积与 Tree-shaking 优化</li>
+<li>代码分割</li>
+</ul>
+</li>
+<li>更新优化<ul>
+<li>Props 稳定性</li>
+<li>v-once</li>
+<li>v-memo</li>
+<li>计算属性稳定性</li>
+</ul>
+</li>
+<li>通用优化<ul>
+<li>大型虚拟列表</li>
+<li>减少大型不可变数据的响应性开销</li>
+<li>避免不必要的组件抽象</li>
+</ul>
+</li>
+</ul>
+<h3 id="无障碍访问"><a href="#无障碍访问" class="headerlink" title="无障碍访问"></a>无障碍访问</h3><ul>
+<li>跳过链接</li>
+<li>内容结构</li>
+<li>语义化表单</li>
+<li>规范</li>
+<li>资源</li>
+</ul>
+<h3 id="安全"><a href="#安全" class="headerlink" title="安全"></a>安全</h3><ul>
+<li>首要规则：不要使用无法信赖的模板</li>
+<li>Vue 自身的安全机制</li>
+<li>潜在的危险<ul>
+<li>注入 HTML</li>
+<li>URL 注入</li>
+<li>样式注入</li>
+<li>JavaScript 注入</li>
+</ul>
+</li>
+<li>最佳实践</li>
+<li>后端协调</li>
+<li>服务端渲染 (SSR)</li>
+</ul>
+<h2 id="TypeScript"><a href="#TypeScript" class="headerlink" title="TypeScript"></a>TypeScript</h2><h2 id="进阶主题"><a href="#进阶主题" class="headerlink" title="进阶主题"></a>进阶主题</h2>
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">JIANG XIAOFAN</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://shuangdeyu.github.io/2024/01/11/vue-kai-fa-wen-dang-cha-zhao-shou-ce/">https://shuangdeyu.github.io/2024/01/11/vue-kai-fa-wen-dang-cha-zhao-shou-ce/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">JIANG XIAOFAN</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/vue/">
+                                    <span class="chip bg-color">vue</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments textarea {
+        box-sizing: border-box;
+        background: url("/medias/comment_bg4.jpeg") 100% 100% no-repeat;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #4cbf30;
+        font-weight: 500;
+        text-decoration: none;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="vcomments" class="card-content" style="display: grid">
+    </div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'Cu0yGDQXYEoC2BMFqoMyqSK1-gzGzoHsz',
+        appKey: 'PYfyCYN5lI59X5Rczd5IGls5',
+        notify: 'false' === 'true',
+        verify: 'true' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '20',
+        lang: 'zh-cn',
+        placeholder: 'hi，留个脚印吧'
+    });
+</script>
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2024/01/19/vue-xue-xi-xiao-ji-qiao-ji-lu/">
+                    <div class="card-image">
+                        
+                        <img src="/gallery/vue2.jpg" class="responsive-img" alt="vue学习-小技巧记录">
+                        
+                        <span class="card-title">vue学习-小技巧记录</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2024-01-19
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%8A%80%E6%9C%AF/" class="post-category">
+                                    技术
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/vue/">
+                        <span class="chip bg-color">vue</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2024/01/10/nian-hui-bu-neng-ting/">
+                    <div class="card-image">
+                        
+                        <img src="/gallery/nianhuibu.jpeg" class="responsive-img" alt="年会不能停">
+                        
+                        <span class="card-title">年会不能停</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-01-10
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%BD%B1%E8%AF%84/" class="post-category">
+                                    影评
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E7%94%B5%E5%BD%B1/">
+                        <span class="chip bg-color">电影</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="113118807"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2024</span>
+            
+            <span id="year">2019</span>
+            <a href="/about" target="_blank">JIANG XIAOFAN</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">107k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
